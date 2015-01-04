@@ -1,5 +1,6 @@
 
 var compiler = require('../lib/compiler');
+var symbols = require('../lib/symbol');
 
 exports['Compile integer'] = function (test) {
     test.strictEqual(compiler.compile(42), '42');
@@ -11,5 +12,13 @@ exports['Compile string'] = function (test) {
 
 exports['Compile null'] = function (test) {
     test.strictEqual(compiler.compile(null), 'null');
+};
+
+exports['Compile symbol in default namespace'] = function (test) {
+    test.equal(compiler.compile(symbols.symbol('first')), 'cljs.core.first');
+};
+
+exports['Compile local symbol'] = function (test) {
+    test.equal(compiler.compile(symbols.symbol('x'), { locals: [ 'x', 'y' ] }), 'x');
 };
 
