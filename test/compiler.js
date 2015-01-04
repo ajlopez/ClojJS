@@ -23,6 +23,14 @@ exports['Compile symbol with namespace'] = function (test) {
     test.equal(compiler.compile(symbols.symbol('ns/first')), 'ns.first');
 };
 
+exports['Compile def in default namespace'] = function (test) {
+    test.equal(compiler.compile(lists.create([symbols.symbol('def'), symbols.symbol('one'), 1])), 'cljs.core.one = 1');
+};
+
+exports['Compile def in current namespace'] = function (test) {
+    test.equal(compiler.compile(lists.create([symbols.symbol('def'), symbols.symbol('one'), 1]), { currentns: 'user' }), 'user.one = 1');
+};
+
 exports['Compile symbol with qualified namespace'] = function (test) {
     test.equal(compiler.compile(symbols.symbol('core.logic/first')), 'core.logic.first');
 };
