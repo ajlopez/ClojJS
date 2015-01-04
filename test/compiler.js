@@ -54,3 +54,7 @@ exports['Compile fn'] = function (test) {
     test.equal(compile('(fn [x y] (list x y))'), 'function (x, y) { return cljs.core.list.call(null, x, y); }');
 };
 
+exports['Compile dot get property'] = function (test) {
+    test.equal(compile('(. "foo" length'), '"foo".length');
+};
+
