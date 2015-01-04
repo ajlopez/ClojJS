@@ -21,6 +21,18 @@ exports['Get name'] = function (test) {
     test.strictEqual(lexer.nextToken(), null);
 };
 
+exports['Get name with qualified namespace'] = function (test) {
+    var lexer = lexers.lexer('cljs.core/foo');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Name);
+    test.equal(token.value, 'cljs.core/foo');
+    
+    test.strictEqual(lexer.nextToken(), null);
+};
+
 exports['Get name with spaces'] = function (test) {
     var lexer = lexers.lexer('  foo   ');
     
