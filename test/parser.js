@@ -1,6 +1,7 @@
 
 var parsers = require('../lib/parser');
 var symbols = require('../lib/symbol');
+var lists = require('../lib/list');
 
 exports['Parse empty text'] = function (test) {
     var parser = parsers.parser('');
@@ -66,6 +67,18 @@ exports['Parse symbol'] = function (test) {
     test.ok(result);
     test.ok(symbols.isSymbol(result));
     test.equal(result.name(), 'first');
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+exports['Parse list'] = function (test) {
+    var parser = parsers.parser('(1 2 (3 4))');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(lists.isList(result));
+    test.equal(result.asString(), '(1 2 (3 4))');
     
     test.strictEqual(parser.parse(), null);
 }
