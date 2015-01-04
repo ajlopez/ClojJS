@@ -17,3 +17,8 @@ exports['Evaluate next'] = function (test) {
     test.equal(cljs.core.next(lists.create([2])), null);
 };
 
+exports['Evaluate cons'] = function (test) {
+    test.equal(cljs.core.cons(1, lists.create([2, 3])).asString(), "(1 2 3)");
+    test.equal(cljs.core.cons(1, lists.create([2])).asString(), "(1 2)");
+};
+
