@@ -7,6 +7,8 @@ exports['Parse empty text'] = function (test) {
     var result = parser.parse();
     
     test.strictEqual(result, null);
+
+    test.strictEqual(parser.parse(), null);
 }
 
 exports['Parse integer'] = function (test) {
@@ -16,6 +18,8 @@ exports['Parse integer'] = function (test) {
     
     test.ok(result);
     test.strictEqual(result, 42);
+
+    test.strictEqual(parser.parse(), null);
 }
 
 exports['Parse string'] = function (test) {
@@ -25,6 +29,8 @@ exports['Parse string'] = function (test) {
     
     test.ok(result);
     test.strictEqual(result, "foo");
+
+    test.strictEqual(parser.parse(), null);
 }
 
 exports['Parse nil'] = function (test) {
@@ -33,5 +39,20 @@ exports['Parse nil'] = function (test) {
     var result = parser.parse();
     
     test.strictEqual(result, null);
+
+    test.strictEqual(parser.parse(), null);
 }
 
+exports['Parse booleans'] = function (test) {
+    var parser = parsers.parser('false true');
+    
+    var result = parser.parse();
+    
+    test.strictEqual(result, false);
+    
+    var result = parser.parse();
+    
+    test.strictEqual(result, true);
+
+    test.strictEqual(parser.parse(), null);
+}
