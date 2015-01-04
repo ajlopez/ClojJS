@@ -19,6 +19,14 @@ exports['Compile symbol in default namespace'] = function (test) {
     test.equal(compiler.compile(symbols.symbol('first')), 'cljs.core.first');
 };
 
+exports['Compile symbol with namespace'] = function (test) {
+    test.equal(compiler.compile(symbols.symbol('ns/first')), 'ns.first');
+};
+
+exports['Compile symbol with qualified namespace'] = function (test) {
+    test.equal(compiler.compile(symbols.symbol('core.logic/first')), 'core.logic.first');
+};
+
 exports['Compile local symbol'] = function (test) {
     test.equal(compiler.compile(symbols.symbol('x'), { locals: [ 'x', 'y' ] }), 'x');
 };
