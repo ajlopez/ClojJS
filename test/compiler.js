@@ -9,3 +9,7 @@ exports['Compile string'] = function (test) {
     test.strictEqual(compiler.compile("foo"), '"foo"');
 };
 
+exports['Compile null'] = function (test) {
+    test.strictEqual(compiler.compile(null), 'null');
+};
+
