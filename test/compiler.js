@@ -2,6 +2,7 @@
 var compiler = require('../lib/compiler');
 var symbols = require('../lib/symbol');
 var lists = require('../lib/list');
+var parsers = require('../lib/parser');
 
 exports['Compile integer'] = function (test) {
     test.strictEqual(compiler.compile(42), '42');
@@ -42,4 +43,3 @@ exports['Compile local symbol'] = function (test) {
 exports['Compile list'] = function (test) {
     test.equal(compiler.compile(lists.create([symbols.symbol('list'), 1, 2, 3])), 'cljs.core.list.call(null, 1, 2, 3)');
 };
-
