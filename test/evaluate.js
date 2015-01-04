@@ -20,3 +20,9 @@ exports['Evaluate list'] = function (test) {
     test.equal(result.asString(), "(1 2 3)");
 }
 
+exports['Evaluate dot'] = function (test) {
+    test.equal(clojjs.evaluate('(. "foo" length)'), 3);
+    test.equal(clojjs.evaluate('(. "foo" (substring 1))'), "oo");
+    test.equal(clojjs.evaluate('(. "foo" (toUpperCase))'), "FOO");
+}
+
