@@ -134,3 +134,27 @@ exports['Get square brackets as delimiters'] = function (test) {
     
     test.strictEqual(lexer.nextToken(), null);
 };
+
+exports['Get delimiter, name, delimiter'] = function (test) {
+    var lexer = lexers.lexer('[x]');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Delimiter);
+    test.equal(token.value, '[');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Name);
+    test.equal(token.value, 'x');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Delimiter);
+    test.equal(token.value, ']');
+    
+    test.strictEqual(lexer.nextToken(), null);
+};

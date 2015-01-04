@@ -84,6 +84,31 @@ exports['Parse list'] = function (test) {
     test.strictEqual(parser.parse(), null);
 }
 
+exports['Parse list with vector'] = function (test) {
+    var parser = parsers.parser('(1 2 [3 4] 5)');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(lists.isList(result));
+    test.equal(result.asString(), '(1 2 [3 4] 5)');
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+exports['Parse list with fn'] = function (test) {
+    var parser = parsers.parser('(fn [x y] (list x y))');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(lists.isList(result));
+    test.equal(result.asString(), '(fn [x y] (list x y))');
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+
 exports['Parse vector'] = function (test) {
     var parser = parsers.parser('[1 2 3 4]');
     
