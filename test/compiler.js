@@ -4,10 +4,10 @@ var symbols = require('../lib/symbol');
 var lists = require('../lib/list');
 var parsers = require('../lib/parser');
 
-function compile(text) {
+function compile(text, context) {
     var parser = parsers.parser(text);
     var expr = parser.parse();
-    return compiler.compile(expr);
+    return compiler.compile(expr, context);
 }
 
 exports['Compile integer'] = function (test) {
@@ -64,5 +64,11 @@ exports['Compile dot invoke method'] = function (test) {
 
 exports['Compile do'] = function (test) {
     test.equal(compile('(do 1 2 3)'), '(1, 2, 3)');
+};
+
+exports['Compile if'] = function (test) {
+    test.equal(compile('(if true 1 2)'), '(true) ? (1) : (2)');
+    test.equal(compile('(if false 1)'), '(false) ? (1) : null');
+    test.equal(compile('(if (nil? x) 1 2)', { locals: [ 'x' ] }), '(cljs.core.nil?.call(null, x)) ? (1) : (2)');
 };
 

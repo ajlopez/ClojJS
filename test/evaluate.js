@@ -30,3 +30,9 @@ exports['Evaluate do'] = function (test) {
     test.equal(clojjs.evaluate('(do 1 2 3)'), 3);
 }
 
+exports['Evaluate if'] = function (test) {
+    test.equal(clojjs.evaluate('(if true 1 2)'), 1);
+    test.equal(clojjs.evaluate('(if false 1 2)'), 2);
+    test.equal(clojjs.evaluate('(if false 1)'), null);
+}
+
