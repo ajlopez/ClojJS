@@ -26,3 +26,7 @@ exports['Evaluate dot'] = function (test) {
     test.equal(clojjs.evaluate('(. "foo" (toUpperCase))'), "FOO");
 }
 
+exports['Evaluate do'] = function (test) {
+    test.equal(clojjs.evaluate('(do 1 2 3)'), 3);
+}
+

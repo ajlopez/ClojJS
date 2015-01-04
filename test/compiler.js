@@ -62,3 +62,7 @@ exports['Compile dot invoke method'] = function (test) {
     test.equal(compile('(. "foo" (substring 1)'), '"foo".substring(1)');
 };
 
+exports['Compile do'] = function (test) {
+    test.equal(compile('(do 1 2 3)'), '(1, 2, 3)');
+};
+
