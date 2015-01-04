@@ -58,3 +58,7 @@ exports['Compile dot get property'] = function (test) {
     test.equal(compile('(. "foo" length'), '"foo".length');
 };
 
+exports['Compile dot invoke method'] = function (test) {
+    test.equal(compile('(. "foo" (substring 1)'), '"foo".substring(1)');
+};
+
