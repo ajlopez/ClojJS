@@ -54,3 +54,14 @@ exports['Evaluate let'] = function (test) {
     test.equal(clojjs.evaluate('(let [x 1 y 2] x)'), 1);
     test.equal(clojjs.evaluate('(let [x 1 y 2] y)'), 2);
 }
+
+exports['Evaluate comparisons'] = function (test) {
+    test.equal(clojjs.evaluate('(== 1 2)'), false);
+    test.equal(clojjs.evaluate('(!= 1 2)'), true);
+    test.equal(clojjs.evaluate('(=== 1 2)'), false);
+    test.equal(clojjs.evaluate('(!== 1 2)'), true);
+    test.equal(clojjs.evaluate('(< 1 2)'), true);
+    test.equal(clojjs.evaluate('(> 1 2)'), false);
+    test.equal(clojjs.evaluate('(<= 1 2)'), true);
+    test.equal(clojjs.evaluate('(>= 1 2)'), false);
+}

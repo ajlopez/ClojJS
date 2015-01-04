@@ -90,3 +90,14 @@ exports['Compile subtract'] = function (test) {
     test.equal(compile('(- 1 2)'), '(1) - (2)');
     test.equal(compile('(- 1 2 3)'), '(1) - (2) - (3)');
 };
+
+exports['Compile comparisons'] = function (test) {
+    test.equal(compile('(== 1 2)'), '(1) == (2)');
+    test.equal(compile('(!= 1 2)'), '(1) != (2)');
+    test.equal(compile('(=== 1 2)'), '(1) === (2)');
+    test.equal(compile('(!== 1 2)'), '(1) !== (2)');
+    test.equal(compile('(> 1 2)'), '(1) > (2)');
+    test.equal(compile('(< 1 2)'), '(1) < (2)');
+    test.equal(compile('(>= 1 2)'), '(1) >= (2)');
+    test.equal(compile('(<= 1 2)'), '(1) <= (2)');
+};
