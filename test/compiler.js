@@ -78,3 +78,10 @@ exports['Compile let'] = function (test) {
     test.equal(compile('(let [x 1] 1 2 x)'), '(function (x) { return (1, 2, x); })(1)');
 };
 
+exports['Compile add'] = function (test) {
+    test.equal(compile('(+)'), '(0)');
+    test.equal(compile('(+ 1)'), '(1)');
+    test.equal(compile('(+ 1 2)'), '(1) + (2)');
+    test.equal(compile('(+ 1 2 3)'), '(1) + (2) + (3)');
+};
+

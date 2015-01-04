@@ -36,3 +36,15 @@ exports['Evaluate if'] = function (test) {
     test.equal(clojjs.evaluate('(if false 1)'), null);
 }
 
+exports['Evaluate add'] = function (test) {
+    test.equal(clojjs.evaluate('(+)'), 0);
+    test.equal(clojjs.evaluate('(+ 2'), 2);
+    test.equal(clojjs.evaluate('(+ 1 2)'), 3);
+    test.equal(clojjs.evaluate('(+ 1 2 3)'), 6);
+}
+
+exports['Evaluate let'] = function (test) {
+    test.equal(clojjs.evaluate('(let [x 1] x)'), 1);
+    test.equal(clojjs.evaluate('(let [x 1 y 2] x)'), 1);
+    test.equal(clojjs.evaluate('(let [x 1 y 2] y)'), 2);
+}
