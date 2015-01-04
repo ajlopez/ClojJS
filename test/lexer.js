@@ -63,6 +63,18 @@ exports['Get names'] = function (test) {
     test.strictEqual(lexer.nextToken(), null);
 };
 
+exports['Get string'] = function (test) {
+    var lexer = lexers.lexer('"foo"');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.String);
+    test.equal(token.value, 'foo');
+    
+    test.strictEqual(lexer.nextToken(), null);
+};
+
 exports['Get parenthesis as delimiter'] = function (test) {
     var lexer = lexers.lexer('()');
     
