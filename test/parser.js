@@ -107,3 +107,15 @@ exports['Parse vector with list'] = function (test) {
     
     test.strictEqual(parser.parse(), null);
 }
+
+exports['Parse vector with vector'] = function (test) {
+    var parser = parsers.parser('[1 [2 3] 4]');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(vectors.isVector(result));
+    test.equal(result.asString(), '[1 [2 3] 4]');
+    
+    test.strictEqual(parser.parse(), null);
+}
