@@ -27,3 +27,11 @@ exports['Parse string'] = function (test) {
     test.strictEqual(result, "foo");
 }
 
+exports['Parse nil'] = function (test) {
+    var parser = parsers.parser('nil');
+    
+    var result = parser.parse();
+    
+    test.strictEqual(result, null);
+}
+
