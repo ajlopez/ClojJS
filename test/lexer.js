@@ -33,6 +33,18 @@ exports['Get name with spaces'] = function (test) {
     test.strictEqual(lexer.nextToken(), null);
 };
 
+exports['Get name skipping commas'] = function (test) {
+    var lexer = lexers.lexer('  ,,foo,,, ');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Name);
+    test.equal(token.value, 'foo');
+    
+    test.strictEqual(lexer.nextToken(), null);
+};
+
 exports['Get names'] = function (test) {
     var lexer = lexers.lexer('foo bar');
     
