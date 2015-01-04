@@ -15,3 +15,12 @@ exports['Lists as string'] = function (test) {
     test.equal(lists.list(true, lists.list(false, null)).asString(), "(true false)");
 };
 
+exports['Is list'] = function (test) {
+    test.ok(lists.isList(lists.list(1, null)));
+    test.ok(lists.isList(lists.list(1, lists.list(2, null))));
+    test.ok(!lists.isList(null));
+    test.ok(!lists.isList(false));
+    test.ok(!lists.isList(true));
+    test.ok(!lists.isList(42));
+    test.ok(!lists.isList("foo"));
+};
