@@ -1,6 +1,6 @@
 # ClojJS
 
-Clojure Lisp interpreter in JavaScript.
+Clojure Lisp compiler to JavaScript in JavaScript.
 
 ## Installation
 

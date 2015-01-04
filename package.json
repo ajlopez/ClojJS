@@ -1,6 +1,6 @@
 { "name": "clojjs"
-, "description": "Clojure Lisp interpreter in JavaScript"
-, "keywords": [ "clojure", "javascript", "interpreter", "clojurescript" ]
+, "description": "Clojure Lisp compiler to JavaScript JavaScript"
+, "keywords": [ "clojure", "javascript", "compiler", "interpreter", "clojurescript", "node", "browser" ]
 , "version": "0.0.1alpha"
 , "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
 , "repository": { "type": "git", "url": "git://github.com/ajlopez/ClojJS.git" }
