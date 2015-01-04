@@ -32,3 +32,22 @@ exports['Get name with spaces'] = function (test) {
     
     test.strictEqual(lexer.nextToken(), null);
 };
+
+exports['Get names'] = function (test) {
+    var lexer = lexers.lexer('foo bar');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Name);
+    test.equal(token.value, 'foo');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Name);
+    test.equal(token.value, 'bar');
+    
+    test.strictEqual(lexer.nextToken(), null);
+};
+
