@@ -1,5 +1,6 @@
 
 var parsers = require('../lib/parser');
+var symbols = require('../lib/symbol');
 
 exports['Parse empty text'] = function (test) {
     var parser = parsers.parser('');
@@ -54,5 +55,17 @@ exports['Parse booleans'] = function (test) {
     
     test.strictEqual(result, true);
 
+    test.strictEqual(parser.parse(), null);
+}
+
+exports['Parse symbol'] = function (test) {
+    var parser = parsers.parser('first');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(symbols.isSymbol(result));
+    test.equal(result.name(), 'first');
+    
     test.strictEqual(parser.parse(), null);
 }
