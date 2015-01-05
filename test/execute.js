@@ -22,3 +22,15 @@ exports['Execute two defs'] = function (test) {
     test.ok(cljs.core.two);
     test.equal(cljs.core.two, 2);
 };
+
+exports['Execute ns'] = function (test) {
+    var context = { };
+    clojjs.execute('(ns mypackage1.mycore1)', context);
+    test.ok(mypackage1);
+    test.equal(typeof mypackage1, 'object');
+    test.ok(mypackage1.mycore1);
+    test.equal(typeof mypackage1.mycore1, 'object');
+    
+    test.equal(context.currentns, 'mypackage1.mycore1');
+    test.ok(context.nss['mypackage1.mycore1']);
+};
