@@ -42,6 +42,10 @@ exports['Compile symbol with qualified namespace'] = function (test) {
     test.equal(compiler.compile(symbols.symbol('core.logic/first')), 'core.logic.first');
 };
 
+exports['Compile symbol in js namespace'] = function (test) {
+    test.equal(compiler.compile(symbols.symbol('js/console')), 'console');
+};
+
 exports['Compile local symbol'] = function (test) {
     test.equal(compiler.compile(symbols.symbol('x'), { locals: [ 'x', 'y' ] }), 'x');
 };
