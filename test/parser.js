@@ -1,6 +1,7 @@
 
 var parsers = require('../lib/parser');
 var symbols = require('../lib/symbol');
+var keywords = require('../lib/keyword');
 var lists = require('../lib/list');
 var vectors = require('../lib/vector');
 
@@ -68,6 +69,19 @@ exports['Parse symbol'] = function (test) {
     test.ok(result);
     test.ok(symbols.isSymbol(result));
     test.equal(result.name(), 'first');
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+exports['Parse keyword'] = function (test) {
+    var parser = parsers.parser(':name');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(keywords.isKeyword(result));
+    test.equal(result.name(), 'name');
+    test.equal(result.asString(), ':name');
     
     test.strictEqual(parser.parse(), null);
 }
