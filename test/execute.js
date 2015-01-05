@@ -34,3 +34,14 @@ exports['Execute ns'] = function (test) {
     test.equal(context.currentns, 'mypackage1.mycore1');
     test.ok(context.nss['mypackage1.mycore1']);
 };
+
+exports['Execute def in my ns'] = function (test) {
+    var context = { };
+    clojjs.execute('(ns mypackage1.mycore2) (def one 1)', context);
+    test.ok(mypackage1);
+    test.equal(typeof mypackage1, 'object');
+    test.ok(mypackage1.mycore2);
+    test.equal(typeof mypackage1.mycore2, 'object');
+    test.ok(mypackage1.mycore2.one);
+    test.equal(mypackage1.mycore2.one, 1);
+};
