@@ -110,3 +110,10 @@ exports['Compile comparisons'] = function (test) {
     test.equal(compile('(>= 1 2)'), '(1) >= (2)');
     test.equal(compile('(<= 1 2)'), '(1) <= (2)');
 };
+
+exports['Compile set!'] = function (test) {
+    var context = { locals: ['x', 'y'] };
+    test.equal(compile('(set! x 1)', context), 'x = 1');
+    test.equal(compile('(set! v 2)', context), 'cljs.core.v = 2');
+    test.equal(compile('(set! (. y length) (+ 1 2))', context), 'y.length = (1) + (2)');
+};
