@@ -35,7 +35,12 @@ exports['Compile def in default namespace'] = function (test) {
 };
 
 exports['Compile def in current namespace'] = function (test) {
-    test.equal(compiler.compile(lists.create([symbols.symbol('def'), symbols.symbol('one'), 1]), { currentns: 'user' }), 'user.one = 1');
+    var context = { currentns: 'user' };
+    test.equal(compiler.compile(lists.create([symbols.symbol('def'), symbols.symbol('one'), 1]), context), 'user.one = 1');
+    
+    test.ok(context.nss);
+    test.ok(context.nss.user.vars);
+    test.ok(context.nss.user.vars.indexOf('one') >= 0);
 };
 
 exports['Compile symbol with qualified namespace'] = function (test) {
