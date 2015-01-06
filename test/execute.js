@@ -45,3 +45,11 @@ exports['Execute def in my ns'] = function (test) {
     test.ok(mypackage1.mycore2.one);
     test.equal(mypackage1.mycore2.one, 1);
 };
+
+exports['Define and Expand macro'] = function (test) {
+    var context = { };
+    clojjs.execute('(def myapply (fn [x] (cons x (cons 1 (cons 2 nil))))) (set! (. myapply macro) true) (def two (myapply list))', context);
+    test.ok(cljs.core.myapply);
+    test.ok(cljs.core.two);
+    test.equal(cljs.core.two.asString(), '(1 2)');
+};
