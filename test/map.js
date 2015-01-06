@@ -20,6 +20,13 @@ exports['Create map with keywords'] = function (test) {
     test.equal(map.get(keywords.keyword("three")), 3);
 };
 
+exports['Map as string'] = function (test) {
+    var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    
+    test.ok(map);
+    test.equal(map.asString(), "{:one 1 :two 2 :three 3}");
+};
+
 exports['Create and modify map'] = function (test) {
     var map = maps.create(["one", 1, "two", 2, "three", 3]);
     
