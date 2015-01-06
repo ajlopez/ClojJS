@@ -78,7 +78,7 @@ exports['Compile do'] = function (test) {
 exports['Compile if'] = function (test) {
     test.equal(compile('(if true 1 2)'), '(true) ? (1) : (2)');
     test.equal(compile('(if false 1)'), '(false) ? (1) : null');
-    test.equal(compile('(if (nil? x) 1 2)', { locals: [ 'x' ] }), '(cljs.core.nil?.call(null, x)) ? (1) : (2)');
+    test.equal(compile('(if (nil? x) 1 2)', { locals: [ 'x' ] }), '(cljs.core.nil_P.call(null, x)) ? (1) : (2)');
 };
 
 exports['Compile let'] = function (test) {
