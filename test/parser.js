@@ -4,6 +4,7 @@ var symbols = require('../lib/symbol');
 var keywords = require('../lib/keyword');
 var lists = require('../lib/list');
 var vectors = require('../lib/vector');
+var maps = require('../lib/map');
 
 exports['Parse empty text'] = function (test) {
     var parser = parsers.parser('');
@@ -122,7 +123,6 @@ exports['Parse list with fn'] = function (test) {
     test.strictEqual(parser.parse(), null);
 }
 
-
 exports['Parse vector'] = function (test) {
     var parser = parsers.parser('[1 2 3 4]');
     
@@ -155,6 +155,20 @@ exports['Parse vector with vector'] = function (test) {
     test.ok(result);
     test.ok(vectors.isVector(result));
     test.equal(result.asString(), '[1 [2 3] 4]');
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+exports['Parse map'] = function (test) {
+    var parser = parsers.parser('{ "one" 1 "two" 2 }');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(maps.isMap(result));
+    test.equal(result.get("one"), 1);
+    test.equal(result.get("two"), 2);
+    test.equal(result.get("three"), null);
     
     test.strictEqual(parser.parse(), null);
 }
