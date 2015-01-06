@@ -186,3 +186,14 @@ exports['Parse map with keywords'] = function (test) {
     
     test.strictEqual(parser.parse(), null);
 }
+
+exports['Parse quote name'] = function (test) {
+    var parser = parsers.parser("'x");
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.equal(result.asString(), "(quote x)");
+    
+    test.strictEqual(parser.parse(), null);
+}
