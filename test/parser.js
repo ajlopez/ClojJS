@@ -197,3 +197,14 @@ exports['Parse quote name'] = function (test) {
     
     test.strictEqual(parser.parse(), null);
 }
+
+exports['Parse quote list'] = function (test) {
+    var parser = parsers.parser("'(1 2)");
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.equal(result.asString(), "(quote (1 2))");
+    
+    test.strictEqual(parser.parse(), null);
+}
