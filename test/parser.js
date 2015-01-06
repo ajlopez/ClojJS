@@ -172,3 +172,17 @@ exports['Parse map'] = function (test) {
     
     test.strictEqual(parser.parse(), null);
 }
+
+exports['Parse map with keywords'] = function (test) {
+    var parser = parsers.parser('{ :one 1 :two 2 }');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(maps.isMap(result));
+    test.equal(result.get(keywords.keyword("one")), 1);
+    test.equal(result.get(keywords.keyword("two")), 2);
+    test.equal(result.get(keywords.keyword("three")), null);
+    
+    test.strictEqual(parser.parse(), null);
+}
