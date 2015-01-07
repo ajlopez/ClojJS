@@ -87,3 +87,14 @@ exports['Execute load in file'] = function (test) {
     test.ok(files.loader.loaded);
 };
 
+exports['Execute defn file'] = function (test) {
+    clojjs.executeFile(path.join(__dirname, 'files', 'defn.cljs'), {});
+    
+    test.ok(cljs.core.defmacro);
+    test.ok(cljs.core.defmacro.macro);
+    test.ok(cljs.core.defn);
+    test.ok(cljs.core.defn.macro);
+    test.ok(cljs.core.inc);
+    
+    test.equal(cljs.core.inc(1), 2);
+};
