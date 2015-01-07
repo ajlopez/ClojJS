@@ -208,3 +208,26 @@ exports['Parse quote list'] = function (test) {
     
     test.strictEqual(parser.parse(), null);
 }
+
+exports['Parse backquote name'] = function (test) {
+    var parser = parsers.parser("`x");
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.equal(result.asString(), "(backquote x)");
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+exports['Parse backquote list'] = function (test) {
+    var parser = parsers.parser("`(1 2)");
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.equal(result.asString(), "(backquote (1 2))");
+    
+    test.strictEqual(parser.parse(), null);
+}
+
