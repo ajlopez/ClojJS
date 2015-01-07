@@ -66,3 +66,9 @@ exports['Evaluate comparisons'] = function (test) {
     test.equal(clojjs.evaluate('(>= 1 2)'), false);
 }
 
+exports['Evaluate rest of arguments'] = function (test) {
+    test.equal(clojjs.evaluate('((fn [x & y] y) 1 2)').asString(), "(2)");
+    test.equal(clojjs.evaluate('((fn [x & y] y) 1)'), null);
+    test.equal(clojjs.evaluate('((fn [x y & z] z) 1 2 3 4)').asString(), "(3 4)");
+    test.equal(clojjs.evaluate('((fn [& x] x) 1 2 3 4)').asString(), "(1 2 3 4)");
+}
