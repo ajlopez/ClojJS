@@ -91,6 +91,16 @@ exports['Compile let'] = function (test) {
     test.equal(compile('(let [x 1] 1 2 x)'), '(function (x) { return (1, 2, x); })(1)');
 };
 
+exports['Compile def'] = function (test) {
+    test.equal(compile('(def one 1)'), 'cljs.core.one = 1');
+    test.equal(compile('(def one (fn [x] (+ x 1)))'), 'cljs.core.one = function (x) { return (x) + (1); }');
+    test.equal(compile('(def my-one (fn [x] (+ x 1)))'), 'cljs.core.my_HY_one = function (x) { return (x) + (1); }');
+};
+
+exports['Compile def in current ns'] = function (test) {
+    test.equal(compile('(def one 1)', { currentns: 'user.core' }), 'user.core.one = 1');
+};
+
 exports['Compile add'] = function (test) {
     test.equal(compile('(+)'), '(0)');
     test.equal(compile('(+ 1)'), '(1)');
