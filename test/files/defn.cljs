@@ -1,1 +1,1 @@
-(def defmacro (fn [name & fdecl]	(list 'do         (list 'def name (cons 'fn fdecl))        (list 'set! (list '. name 'macro) true))))(set! (. defmacro macro) true)(defmacro defn [name & fdecl]	`(def ~name (fn ~@fdecl)))(defn inc [x] (+ x 1))
+(def defmacro (fn [name & fdecl]	`(do         (def ~name (fn ~@fdecl))        (set! (. ~name macro) true))))(set! (. defmacro macro) true)(defmacro defn [name & fdecl]	`(def ~name (fn ~@fdecl)))(defn inc [x] (+ x 1))
