@@ -65,3 +65,4 @@ exports['Evaluate comparisons'] = function (test) {
     test.equal(clojjs.evaluate('(<= 1 2)'), true);
     test.equal(clojjs.evaluate('(>= 1 2)'), false);
 }
+

@@ -63,6 +63,10 @@ exports['Compile fn'] = function (test) {
     test.equal(compile('(fn [x y] (list x y))'), 'function (x, y) { return cljs.core.list.call(null, x, y); }');
 };
 
+exports['Compile fn with rest of arguments'] = function (test) {
+    test.equal(compile('(fn [x y & z] (list x y))'), 'function (x, y) { var z = makeRest(arguments, 2); return cljs.core.list.call(null, x, y); }');
+};
+
 exports['Compile dot get property'] = function (test) {
     test.equal(compile('(. "foo" length'), '"foo".length');
 };
