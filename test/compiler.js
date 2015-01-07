@@ -142,6 +142,7 @@ exports['Compile quote'] = function (test) {
 exports['Compile backquote'] = function (test) {
     test.equal(compile("`42"), '42');
     test.equal(compile("`x"), 'symbols.symbol("x")');
+    test.equal(compile("`(~x ~y)", { locals: ['x', 'y'] }), 'lists.create([x, y])');
     test.equal(compile("`\"foo\""), '"foo"');
     test.equal(compile("`(1 2)"), 'lists.create([1, 2])');
 };
