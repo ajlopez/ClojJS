@@ -69,6 +69,7 @@ exports['Compile fn with rest of arguments'] = function (test) {
 
 exports['Compile fn with multiple arities'] = function (test) {
     test.equal(compile('(fn ([x] (+ x 1)) ([x y] (+ x y)))'), 'function () { if (arguments.length == 1) return (function (x) { return (x) + (1); }).apply(null, arguments); if (arguments.length == 2) return (function (x, y) { return (x) + (y); }).apply(null, arguments); }');
+    test.equal(compile('(fn ([x] (+ x 1)) ([x y & z] (+ x y)))'), 'function () { if (arguments.length == 1) return (function (x) { return (x) + (1); }).apply(null, arguments); if (arguments.length >= 2) return (function (x, y) { var z = makeRest(arguments, 2); return (x) + (y); }).apply(null, arguments); }');
 };
 
 exports['Compile dot get property'] = function (test) {
