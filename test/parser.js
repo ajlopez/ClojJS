@@ -242,3 +242,15 @@ exports['Parse unquote name'] = function (test) {
     test.strictEqual(parser.parse(), null);
 }
 
+exports['Parse unquote-splicing name'] = function (test) {
+    var parser = parsers.parser("~@x");
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.equal(result.asString(), "(unquote-splicing x)");
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+
