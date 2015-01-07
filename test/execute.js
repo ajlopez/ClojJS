@@ -75,3 +75,15 @@ exports['Execute load-file'] = function (test) {
     test.ok(files.loadedfile);
     test.ok(files.loadedfile.loaded);
 };
+
+exports['Execute load in file'] = function (test) {
+    delete global.files;
+    
+    var filename = path.join(__dirname, 'files', 'loader.cljs');
+    clojjs.execute('(load-file "' + filename + '")', {});
+    
+    test.ok(files);
+    test.ok(files.loader);
+    test.ok(files.loader.loaded);
+};
+
