@@ -72,3 +72,10 @@ exports['Evaluate rest of arguments'] = function (test) {
     test.equal(clojjs.evaluate('((fn [x y & z] z) 1 2 3 4)').asString(), "(3 4)");
     test.equal(clojjs.evaluate('((fn [& x] x) 1 2 3 4)').asString(), "(1 2 3 4)");
 }
+
+exports['Evaluate multi arity fns'] = function (test) {
+    test.equal(clojjs.evaluate('((fn ([x] x) ([x y] (+ x y))) 1 2)'), 3);
+    test.equal(clojjs.evaluate('((fn ([x] x) ([x y] (+ x y))) 1 )'), 1);
+    test.equal(clojjs.evaluate('((fn ([x] x) ([x y] (+ x y)) ([x y & z] z)) 1 2 3 4 )').asString(), '(3 4)');
+    test.equal(clojjs.evaluate('((fn ([x] x) ([x y] (+ x y))) 1 2 3)'), null);
+}
