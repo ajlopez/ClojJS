@@ -1,5 +1,6 @@
 
 var clojjs = require('..');
+var path = require('path');
 
 exports['Execute def'] = function (test) {
     if (cljs && cljs.core && cljs.core.one)
@@ -52,4 +53,13 @@ exports['Define and Expand macro'] = function (test) {
     test.ok(cljs.core.myapply);
     test.ok(cljs.core.two);
     test.equal(cljs.core.two.asString(), '(1 2)');
+};
+
+exports['Execute file'] = function (test) {
+    delete global.files;
+    clojjs.executeFile(path.join(__dirname, 'files', 'loadedfile.cljs'), {});
+    
+    test.ok(files);
+    test.ok(files.loadedfile);
+    test.ok(files.loadedfile.loaded);
 };
