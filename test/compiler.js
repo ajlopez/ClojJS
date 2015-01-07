@@ -143,7 +143,7 @@ exports['Compile backquote'] = function (test) {
     test.equal(compile("`42"), '42');
     test.equal(compile("`x"), 'symbols.symbol("x")');
     test.equal(compile("`(~x ~y)", { locals: ['x', 'y'] }), 'lists.create([x, y])');
-    test.equal(compile("`(1 ~x ~@y 2 3)", { locals: ['x', 'y'] }), 'lists.create([1, x, ].concat(y.asArray()).concat([2, 3])])');
+    test.equal(compile("`(1 ~x ~@y 2 3)", { locals: ['x', 'y'] }), 'lists.create([1, x, ].concat(y == null ? [] : y.asArray()).concat([2, 3])])');
     test.equal(compile("`\"foo\""), '"foo"');
     test.equal(compile("`(1 2)"), 'lists.create([1, 2])');
     test.equal(compile("`[1 2]"), 'vectors.create([1, 2])');
