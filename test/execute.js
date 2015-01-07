@@ -57,7 +57,19 @@ exports['Define and Expand macro'] = function (test) {
 
 exports['Execute file'] = function (test) {
     delete global.files;
+    
     clojjs.executeFile(path.join(__dirname, 'files', 'loadedfile.cljs'), {});
+    
+    test.ok(files);
+    test.ok(files.loadedfile);
+    test.ok(files.loadedfile.loaded);
+};
+
+exports['Execute load-file'] = function (test) {
+    delete global.files;
+    
+    var filename = path.join(__dirname, 'files', 'loadedfile.cljs');
+    clojjs.execute('(load-file "' + filename + '")', {});
     
     test.ok(files);
     test.ok(files.loadedfile);
