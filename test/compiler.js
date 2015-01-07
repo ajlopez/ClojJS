@@ -146,5 +146,7 @@ exports['Compile backquote'] = function (test) {
     test.equal(compile("`\"foo\""), '"foo"');
     test.equal(compile("`(1 2)"), 'lists.create([1, 2])');
     test.equal(compile("`[1 2]"), 'vectors.create([1, 2])');
+    test.equal(compile("`[x y]"), 'vectors.create([symbols.symbol("x"), symbols.symbol("y")])');
+    test.equal(compile("`[~x ~y]", { locals: [ 'x', 'y' ] }), 'vectors.create([x, y])');
 };
 
