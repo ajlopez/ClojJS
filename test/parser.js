@@ -231,3 +231,14 @@ exports['Parse backquote list'] = function (test) {
     test.strictEqual(parser.parse(), null);
 }
 
+exports['Parse unquote name'] = function (test) {
+    var parser = parsers.parser("~x");
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.equal(result.asString(), "(unquote x)");
+    
+    test.strictEqual(parser.parse(), null);
+}
+
