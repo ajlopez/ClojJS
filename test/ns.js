@@ -23,3 +23,8 @@ exports['To filename'] = function (test) {
     test.equal(ns.toFilename(path.resolve('./src'), 'user.core'), path.resolve('./src/user/core.cljs'));
 };
 
+exports['To source folder'] = function (test) {
+    test.equal(ns.toSource('./src/user/core.cljs', 'user.core').replace(/\\/g, "/"), './src');
+    test.equal(ns.toSource('./src/user.cljs', 'user').replace(/\\/g, "/"), './src');
+    test.equal(ns.toSource(path.resolve('./src/cljs/user/core.cljs'), 'user.core'), path.resolve('./src/cljs'));
+};
