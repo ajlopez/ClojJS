@@ -27,6 +27,17 @@ exports['Map as string'] = function (test) {
     test.equal(map.asString(), "{:one 1 :two 2 :three 3}");
 };
 
+exports['Map as object'] = function (test) {
+    var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    var result = map.asObject();
+    
+    test.ok(result);
+    test.equal(typeof result, 'object');
+    test.equal(result.one, 1);
+    test.equal(result.two, 2);
+    test.equal(result.three, 3);
+};
+
 exports['Create and modify map'] = function (test) {
     var map = maps.create(["one", 1, "two", 2, "three", 3]);
     
