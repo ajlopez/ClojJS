@@ -1,0 +1,1 @@
+(ns user)(def two 2)

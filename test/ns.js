@@ -18,9 +18,22 @@ exports['Namespace is invalid'] = function (test) {
 };
 
 exports['To filename'] = function (test) {
-    test.equal(ns.toFilename('./src', 'user.core').replace(/\\/g, "/"), 'src/user/core.cljs');
-    test.equal(ns.toFilename('./src', 'user').replace(/\\/g, "/"), 'src/user.cljs');
-    test.equal(ns.toFilename(path.resolve('./src'), 'user.core'), path.resolve('./src/user/core.cljs'));
+    test.equal(ns.toFilename('user.core').replace(/\\/g, "/"), 'user/core.cljs');
+    test.equal(ns.toFilename('user').replace(/\\/g, "/"), 'user.cljs');
+};
+
+exports['Resolve filename'] = function (test) {
+    test.equal(ns.resolveFilename('test/files', 'user.core'), null);
+    test.equal(ns.resolveFilename('test/src', 'user.core').replace(/\\/g, "/"), 'test/src/user/core.cljs');
+    test.equal(ns.resolveFilename('test/src', 'user').replace(/\\/g, "/"), 'test/src/user.cljs');
+    test.equal(ns.resolveFilename(path.resolve('test/src'), 'user.core'), path.resolve('test/src/user/core.cljs'));
+};
+
+exports['Resolve filename using source array'] = function (test) {
+    test.equal(ns.resolveFilename(['test/files'], 'user.core'), null);
+    test.equal(ns.resolveFilename(['test/files', 'test/src'], 'user.core').replace(/\\/g, "/"), 'test/src/user/core.cljs');
+    test.equal(ns.resolveFilename(['test/files', 'test/src'], 'user').replace(/\\/g, "/"), 'test/src/user.cljs');
+    test.equal(ns.resolveFilename([path.resolve('test/files'), path.resolve('test/src')], 'user.core'), path.resolve('test/src/user/core.cljs'));
 };
 
 exports['To source folder'] = function (test) {
