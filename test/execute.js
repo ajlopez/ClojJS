@@ -98,3 +98,15 @@ exports['Execute defn file'] = function (test) {
     
     test.equal(cljs.core.inc(1), 2);
 };
+
+exports['Execute file with require'] = function (test) {
+    clojjs.setSource(null);
+    clojjs.executeFile(path.join(__dirname, 'src', 'lib', 'core.cljs'), {});
+    
+    test.ok(lib);
+    test.ok(lib.core);
+    test.ok(sublib);
+    test.ok(sublib.core);
+    test.ok(sublib.core.one);
+    test.equal(sublib.core.one, 1);
+};
