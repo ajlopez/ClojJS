@@ -156,3 +156,7 @@ exports['Compile backquote'] = function (test) {
     test.equal(compile("`[~x ~y]", { locals: [ 'x', 'y' ] }), 'vectors.create([x, y])');
 };
 
+exports['Compile native new with ending dot'] = function (test) {
+    test.equal(compile("(Date.)"), "new Date()");
+    test.equal(compile('(Error. "Invalid operation")'), 'new Error("Invalid operation")');
+};
