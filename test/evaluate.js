@@ -79,3 +79,13 @@ exports['Evaluate multi arity fns'] = function (test) {
     test.equal(clojjs.evaluate('((fn ([x] x) ([x y] (+ x y)) ([x y & z] z)) 1 2 3 4 )').asString(), '(3 4)');
     test.equal(clojjs.evaluate('((fn ([x] x) ([x y] (+ x y))) 1 2 3)'), null);
 }
+
+exports['Evaluate map to object'] = function (test) {
+    var result = clojjs.evaluate('(to-object { :one 1 :two 2 :three 3 })');
+    
+    test.ok(result);
+    test.equal(typeof result, 'object');
+    test.equal(result.one, 1);
+    test.equal(result.two, 2);
+    test.equal(result.three, 3);
+}

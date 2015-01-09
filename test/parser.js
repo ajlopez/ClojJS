@@ -173,6 +173,24 @@ exports['Parse map'] = function (test) {
     test.strictEqual(parser.parse(), null);
 }
 
+exports['Parse list with map'] = function (test) {
+    var parser = parsers.parser('(to-object { "one" 1 "two" 2 })');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(lists.isList(result));
+    
+    result = result.next().first();
+    
+    test.ok(maps.isMap(result));
+    test.equal(result.get("one"), 1);
+    test.equal(result.get("two"), 2);
+    test.equal(result.get("three"), null);
+    
+    test.strictEqual(parser.parse(), null);
+}
+
 exports['Parse map with keywords'] = function (test) {
     var parser = parsers.parser('{ :one 1 :two 2 }');
     
