@@ -33,6 +33,9 @@ exports['Execute core file'] = function (test) {
     test.ok(cljs.core.nfirst);
     test.ok(cljs.core.fnext);
     test.ok(cljs.core.nnext);
+    
+    test.ok(cljs.core.println);
+    test.ok(cljs.core.is);
 };
 
 exports['Evaluate second'] = function (test) {
@@ -50,6 +53,20 @@ exports['Evaluate throw'] = function (test) {
         function () {
             clojjs.evaluate('(throw (Error. "Throw Error"))');
         },
-        /Throw Error/
+        "Throw Error"
+    );
+};
+
+exports['Evaluate success is'] = function (test) {
+    test.equal(clojjs.evaluate("(is (= 1 1))"), true);
+    test.equal(clojjs.evaluate("(is (= 2 (+ 1 1)))"), true);
+};
+
+exports['Evaluate failed is'] = function (test) {
+    test.throws(
+        function () {
+            clojjs.evaluate("(is (= 1 2))");
+        },
+        "Assert error: (= 1 2) is not true"
     );
 };

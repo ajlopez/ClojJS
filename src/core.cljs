@@ -22,4 +22,11 @@
 (defn nnext [x] (next (next x)))
 
 (defmacro println [& args]
-    `(.log js/console ((str ~@args)))
+    `(.log js/console ((str ~@args))))
+    
+(defmacro is [cond]
+    `(if ~cond
+            true
+            (throw (Error. (str "Assert error: " '~cond " is not true")))))
+
+            
