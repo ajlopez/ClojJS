@@ -21,3 +21,5 @@
 
 (defn nnext [x] (next (next x)))
 
+(defmacro println [& args]
+    `(js/console.log (str ~@args))
