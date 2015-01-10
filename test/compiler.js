@@ -126,7 +126,7 @@ exports['Compile subtract'] = function (test) {
 };
 
 exports['Compile comparisons'] = function (test) {
-    test.equal(compile('(= 1 2)'), '(1) == (2)');
+    test.equal(compile('(= 1 2)'), 'cljs.core.equals.call(null, 1, 2)');
     test.equal(compile('(!= 1 2)'), '(1) != (2)');
     test.equal(compile('(== 1 2)'), '(1) == (2)');
     test.equal(compile('(!= 1 2)'), '(1) != (2)');
