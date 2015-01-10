@@ -89,3 +89,14 @@ exports['Evaluate map to object'] = function (test) {
     test.equal(result.two, 2);
     test.equal(result.three, 3);
 }
+
+exports['Evaluate str'] = function (test) {
+    test.equal(clojjs.evaluate('(str)'), '');
+    test.equal(clojjs.evaluate('(str 1)'), '1');
+    test.equal(clojjs.evaluate('(str 4 2)'), '42');
+    test.equal(clojjs.evaluate('(str "foo")'), "foo");
+    test.equal(clojjs.evaluate("(str '(1 2 3))"), "(1 2 3)");
+    test.equal(clojjs.evaluate("(str '[1 2 3])"), "[1 2 3]");
+    test.equal(clojjs.evaluate("(str [1 2 3])"), "[1 2 3]");
+    test.equal(clojjs.evaluate("(str :foo :bar"), ":foo:bar");
+}

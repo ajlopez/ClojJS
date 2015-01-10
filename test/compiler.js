@@ -142,6 +142,15 @@ exports['Compile quote'] = function (test) {
     test.equal(compile("'x"), 'symbols.symbol("x")');
     test.equal(compile("'\"foo\""), '"foo"');
     test.equal(compile("'(1 2)"), 'lists.create([1, 2])');
+    test.equal(compile("'[1 2]"), 'vectors.create([1, 2])');
+};
+
+exports['Compile vector'] = function (test) {
+    test.equal(compile("[1 2]"), 'vectors.create([1, 2])');
+};
+
+exports['Compile keyword'] = function (test) {
+    test.equal(compile(":foo"), 'keywords.keyword("foo")');
 };
 
 exports['Compile backquote'] = function (test) {
