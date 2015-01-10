@@ -1,0 +1,1 @@
+(println "List Tests");(println (cons 1 '(2)));(is (= (cons 1 '(2)) '(1 2))))
