@@ -98,5 +98,6 @@ exports['Evaluate str'] = function (test) {
     test.equal(clojjs.evaluate("(str '(1 2 3))"), "(1 2 3)");
     test.equal(clojjs.evaluate("(str '[1 2 3])"), "[1 2 3]");
     test.equal(clojjs.evaluate("(str [1 2 3])"), "[1 2 3]");
-    test.equal(clojjs.evaluate("(str :foo :bar"), ":foo:bar");
+    test.equal(clojjs.evaluate("(str :foo :bar)"), ":foo:bar");
+    test.equal(clojjs.evaluate("(str 'x)"), "x");
 }
