@@ -51,6 +51,12 @@ exports['Compile symbol in js namespace'] = function (test) {
     test.equal(compiler.compile(symbols.symbol('js/console')), 'console');
 };
 
+exports['Compile native invoke with initial dot'] = function (test) {
+    var parser = parsers.parser('(.log js/console (1 (+ 1 1)))');
+    var expr = parser.parse();
+    test.equal(compiler.compile(expr), 'console.log(1, (1) + (1))');
+};
+
 exports['Compile local symbol'] = function (test) {
     test.equal(compiler.compile(symbols.symbol('x'), { locals: [ 'x', 'y' ] }), 'x');
 };
