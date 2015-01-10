@@ -44,3 +44,12 @@ exports['Evaluate ffirst'] = function (test) {
     test.equal(clojjs.evaluate("(ffirst '((1) 2 3))"), 1);
     test.equal(clojjs.evaluate("(ffirst '((1 2) (2 3) 4))"), 1);
 };
+
+exports['Evaluate throw'] = function (test) {
+    test.throws(
+        function () {
+            clojjs.evaluate('(throw (Error. "Throw Error"))');
+        },
+        /Throw Error/
+    );
+};
