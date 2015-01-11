@@ -41,3 +41,14 @@
 (is (= (keyword? '(1 2 3)) false))
 (is (= (keyword? [1 2 3]) false))
 
+(is (= (vector? :x) false))
+(is (= (vector? nil) false))
+(is (= (vector? true) false))
+(is (= (vector? false) false))
+(is (= (vector? 42) false))
+(is (= (vector? "foo") false))
+(is (= (vector? 'foo) false))
+(is (= (vector? ()) false))
+(is (= (vector? '(1 2 3)) false))
+(is (= (vector? [1 2 3]) true))
+

@@ -63,3 +63,6 @@
 
 (defn keyword?
     [x] (.isKeyword js/keywords (x)))
+
+(defn vector?
+    [x] (.isVector js/vectors (x)))
