@@ -33,15 +33,19 @@
     (if x false true))
     
 (defmacro or
-  ([] nil)
-  ([x] x)
-  ([x & next]
-      `(let [$or ~x]
-         (if $or $or (or ~@next)))))
+    ([] nil)
+    ([x] x)
+    ([x & next]
+        `(let [$or ~x]
+            (if $or $or (or ~@next)))))
 
 (defmacro and
-  ([] true)
-  ([x] x)
-  ([x & next]
-   `(let [$and ~x]
-      (if $and (and ~@next) $and))))
+    ([] true)
+    ([x] x)
+    ([x & next]
+        `(let [$and ~x]
+            (if $and (and ~@next) $and))))
+      
+(defn false?
+  [x] (=== x false))
+  
