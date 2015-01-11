@@ -20,6 +20,22 @@ exports['Create map with keywords'] = function (test) {
     test.equal(map.get(keywords.keyword("three")), 3);
 };
 
+exports['Map has key'] = function (test) {
+    var map = maps.create([keywords.keyword("one"), null, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    
+    test.ok(map);
+
+    test.ok(map.has(keywords.keyword("one")));
+    test.ok(map.has(keywords.keyword("two")));
+    test.ok(map.has(keywords.keyword("three")));
+    test.ok(!map.has(keywords.keyword("four")));
+
+    test.equal(map.get(keywords.keyword("one")), null);
+    test.equal(map.get(keywords.keyword("two")), 2);
+    test.equal(map.get(keywords.keyword("three")), 3);
+    test.equal(map.get(keywords.keyword("four")), null);
+};
+
 exports['Map as string'] = function (test) {
     var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
     
