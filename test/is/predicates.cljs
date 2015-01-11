@@ -64,3 +64,6 @@
 (is (= (map? [1 2 3]) false))
 (is (= (map? {:one 1 :two 2}) true))
 
+(is (array? (to-array '(1 2 3))))
+(is (array? (to-array [1 2 3])))
+

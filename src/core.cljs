@@ -70,6 +70,9 @@
 (defn map?
     [x] (.isMap js/maps (x)))
 
+(defn array?
+    [x] (.isArray js/Array (x)))
+
 (defn get
     ([map key] (.get map (key)))
     ([map key missing] (if (.has map (key))
@@ -81,4 +84,10 @@
     (if (nil? value)
         (Object.)
         (.asObject value ())))
+
+(defn to-array
+    [value]
+    (if (nil? value)
+        (Array.)
+        (.asArray value ())))
         
