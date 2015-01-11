@@ -11,6 +11,20 @@ exports['Create vector'] = function (test) {
     test.equal(vector.get(2), 3);
 };
 
+exports['Vector has key'] = function (test) {
+    var vector = vectors.create([1, 2, 3]);
+    
+    test.ok(vector);
+    test.equal(vector.length(), 3);
+    test.ok(vector.has(0));
+    test.ok(vector.has(1));
+    test.ok(vector.has(2));
+    test.ok(!vector.has(-1));
+    test.ok(!vector.has(3));
+    test.ok(!vector.has(4));
+    test.ok(!vector.has("foo"));
+};
+
 exports['Vectors as string'] = function (test) {
     test.equal(vectors.create([1, 2, 3]).asString(), "[1 2 3]");
     test.equal(vectors.create([1, 2]).asString(), "[1 2]");
