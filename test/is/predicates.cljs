@@ -52,3 +52,15 @@
 (is (= (vector? '(1 2 3)) false))
 (is (= (vector? [1 2 3]) true))
 
+(is (= (map? :x) false))
+(is (= (map? nil) false))
+(is (= (map? true) false))
+(is (= (map? false) false))
+(is (= (map? 42) false))
+(is (= (map? "foo") false))
+(is (= (map? 'foo) false))
+(is (= (map? ()) false))
+(is (= (map? '(1 2 3)) false))
+(is (= (map? [1 2 3]) false))
+(is (= (map? {:one 1 :two 2}) true))
+

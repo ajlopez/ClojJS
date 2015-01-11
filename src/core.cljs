@@ -66,3 +66,6 @@
 
 (defn vector?
     [x] (.isVector js/vectors (x)))
+
+(defn map?
+    [x] (.isMap js/maps (x)))
