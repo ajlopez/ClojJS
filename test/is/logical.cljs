@@ -1,0 +1,1 @@
+(println "Logical tests")(is (= (not false) true))(is (= (not nil) true))(is (= (not true) false))(is (= (not 1) false))

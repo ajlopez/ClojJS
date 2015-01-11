@@ -29,4 +29,6 @@
             true
             (throw (Error. (str "Assert error: " '~cond " is not true")))))
 
-            
+(defn not [x]
+    (if x false true))
+    
