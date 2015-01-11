@@ -10,4 +10,12 @@
 (is (= (nil? :foo) false))
 (is (= (nil? ()) false))
 
+(is (= (some? nil) false))
+(is (= (some? js/undefined) false))
+(is (= (some? false) true))
+(is (= (some? true) true))
+(is (= (some? 42) true))
+(is (= (some? "foo") true))
+(is (= (some? :foo) true))
+(is (= (some? ()) true))
 

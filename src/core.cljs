@@ -54,4 +54,7 @@
 
 (defn nil?
     [x] (== x nil))
-   
+
+(defn some?
+    [x] (not (nil? x)))
+    
