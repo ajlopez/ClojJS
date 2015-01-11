@@ -91,3 +91,7 @@
         (Array.)
         (.asArray value ())))
         
+(defn recur
+    [& values]
+    (.create js/recurs ((to-array values))))
+        
