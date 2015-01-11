@@ -79,11 +79,11 @@ exports['Compile fn with multiple arities'] = function (test) {
 };
 
 exports['Compile dot get property'] = function (test) {
-    test.equal(compile('(. "foo" length'), '"foo".length');
+    test.equal(compile('(. "foo" length)'), '"foo".length');
 };
 
 exports['Compile dot invoke method'] = function (test) {
-    test.equal(compile('(. "foo" (substring 1)'), '"foo".substring(1)');
+    test.equal(compile('(. "foo" (substring 1))'), '"foo".substring(1)');
 };
 
 exports['Compile do'] = function (test) {
@@ -97,13 +97,13 @@ exports['Compile if'] = function (test) {
 };
 
 exports['Compile let'] = function (test) {
-    test.equal(compile('(let [x 1] (if x true false)'), '(function (x) { return (x) ? (true) : (false); })(1)');
-    test.equal(compile('(let [x 1 y 2] (if x y 0)'), '(function (x) { return (function (y) { return (x) ? (y) : (0); })(2); })(1)');
+    test.equal(compile('(let [x 1] (if x true false))'), '(function (x) { return (x) ? (true) : (false); })(1)');
+    test.equal(compile('(let [x 1 y 2] (if x y 0))'), '(function (x) { return (function (y) { return (x) ? (y) : (0); })(2); })(1)');
     test.equal(compile('(let [x 1] 1 2 x)'), '(function (x) { return (1, 2, x); })(1)');
 };
 
 exports['Compile loop'] = function (test) {
-    test.equal(compile('(loop [x 1 y 2] (if x y 0)', {}), 'loops.evaluate(function (x) { return function (y) { return (x) ? (y) : (0); }; }, [1, 2])');
+    test.equal(compile('(loop [x 1 y 2] (if x y 0))', {}), 'loops.evaluate(function (x) { return function (y) { return (x) ? (y) : (0); }; }, [1, 2])');
 };
 
 exports['Compile def'] = function (test) {

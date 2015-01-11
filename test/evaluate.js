@@ -38,13 +38,13 @@ exports['Evaluate if'] = function (test) {
 
 exports['Evaluate add'] = function (test) {
     test.equal(clojjs.evaluate('(+)'), 0);
-    test.equal(clojjs.evaluate('(+ 2'), 2);
+    test.equal(clojjs.evaluate('(+ 2)'), 2);
     test.equal(clojjs.evaluate('(+ 1 2)'), 3);
     test.equal(clojjs.evaluate('(+ 1 2 3)'), 6);
 }
 
 exports['Evaluate subtract'] = function (test) {
-    test.equal(clojjs.evaluate('(- 2'), -2);
+    test.equal(clojjs.evaluate('(- 2)'), -2);
     test.equal(clojjs.evaluate('(- 1 2)'), -1);
     test.equal(clojjs.evaluate('(- 1 2 3)'), -4);
 }
