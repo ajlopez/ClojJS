@@ -47,7 +47,11 @@
             (if $and (and ~@next) $and))))
       
 (defn false?
-  [x] (=== x false))
+    [x] (=== x false))
   
 (defn true?
-  [x] (=== x true))
+    [x] (=== x true))
+
+(defn nil?
+    [x] (== x nil))
+   
