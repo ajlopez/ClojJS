@@ -49,3 +49,5 @@
 (defn false?
   [x] (=== x false))
   
+(defn true?
+  [x] (=== x true))
