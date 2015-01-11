@@ -76,3 +76,9 @@
                             (.get map (key))
                             missing)))
 
+(defn to-object
+    [value]
+    (if (nil? value)
+        (Object.)
+        (.asObject value ())))
+        
