@@ -69,3 +69,9 @@
 
 (defn map?
     [x] (.isMap js/maps (x)))
+
+(defn get
+    ([map key] (.get map (key)))
+    ([map key missing] (if (.has map (key))
+                            (.get map (key))
+                            missing)))
