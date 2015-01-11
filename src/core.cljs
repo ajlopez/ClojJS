@@ -38,3 +38,10 @@
   ([x & next]
       `(let [$or ~x]
          (if $or $or (or ~@next)))))
+
+(defmacro and
+  ([] true)
+  ([x] x)
+  ([x & next]
+   `(let [$and ~x]
+      (if $and (and ~@next) $and))))
