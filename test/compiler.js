@@ -102,6 +102,10 @@ exports['Compile let'] = function (test) {
     test.equal(compile('(let [x 1] 1 2 x)'), '(function (x) { return (1, 2, x); })(1)');
 };
 
+exports['Compile loop'] = function (test) {
+    test.equal(compile('(loop [x 1 y 2] (if x y 0)', {}), 'loops.evaluate(function (x) { return function (y) { return (x) ? (y) : (0); }; }, [1, 2])');
+};
+
 exports['Compile def'] = function (test) {
     test.equal(compile('(def one 1)'), 'cljs.core.one = 1');
     test.equal(compile('(def one (fn [x] (+ x 1)))'), 'cljs.core.one = function (x) { return (x) + (1); }');
