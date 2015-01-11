@@ -26,4 +26,18 @@
 (is (= (symbol? 42) false))
 (is (= (symbol? "foo") false))
 (is (= (symbol? :foo) false))
+(is (= (symbol? ()) false))
+(is (= (symbol? '(1 2 3)) false))
+(is (= (symbol? [1 2 3]) false))
+
+(is (= (keyword? :x) true))
+(is (= (keyword? nil) false))
+(is (= (keyword? true) false))
+(is (= (keyword? false) false))
+(is (= (keyword? 42) false))
+(is (= (keyword? "foo") false))
+(is (= (keyword? 'foo) false))
+(is (= (keyword? ()) false))
+(is (= (keyword? '(1 2 3)) false))
+(is (= (keyword? [1 2 3]) false))
 

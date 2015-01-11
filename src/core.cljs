@@ -60,3 +60,6 @@
 
 (defn symbol?
     [x] (.isSymbol js/symbols (x)))
+
+(defn keyword?
+    [x] (.isKeyword js/keywords (x)))
