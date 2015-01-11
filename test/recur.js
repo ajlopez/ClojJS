@@ -10,6 +10,8 @@ exports['Create recur'] = function (test) {
     test.equal(result.get(0), 1);
     test.equal(result.get(1), 2);
     test.equal(result.get(2), 3);
+    
+    test.deepEqual(result.items(), [1, 2, 3]);
 }
 
 exports['Is recur'] = function (test) {
