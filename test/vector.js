@@ -9,6 +9,8 @@ exports['Create vector'] = function (test) {
     test.equal(vector.get(0), 1);
     test.equal(vector.get(1), 2);
     test.equal(vector.get(2), 3);
+    
+    test.deepEqual(vector.asArray(), [1, 2, 3]);
 };
 
 exports['Vector has key'] = function (test) {
