@@ -19,3 +19,11 @@
 (is (= (some? :foo) true))
 (is (= (some? ()) true))
 
+(is (= (symbol? 'x) true))
+(is (= (symbol? nil) false))
+(is (= (symbol? true) false))
+(is (= (symbol? false) false))
+(is (= (symbol? 42) false))
+(is (= (symbol? "foo") false))
+(is (= (symbol? :foo) false))
+

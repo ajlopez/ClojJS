@@ -57,4 +57,6 @@
 
 (defn some?
     [x] (not (nil? x)))
-    
+
+(defn symbol?
+    [x] (.isSymbol js/symbols (x)))
