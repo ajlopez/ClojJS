@@ -67,3 +67,13 @@
 (is (array? (to-array '(1 2 3))))
 (is (array? (to-array [1 2 3])))
 
+(is (seq? '(1 2 3)))
+(is (seq? ()))
+(is (seq? [1 2 3]))
+
+(is (= (seq? "foo") false))
+(is (= (seq? 42) false))
+(is (= (seq? 'x) false))
+(is (= (seq? :foo) false))
+(is (= (seq? {}) false))
+

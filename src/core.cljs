@@ -95,3 +95,6 @@
     [& values]
     (.create js/recurs ((to-array values))))
         
+(defn seq?
+    [value]
+    (and (!= (. value first) nil) (!= (. value next) nil) (!= (. value rest) nil)))
