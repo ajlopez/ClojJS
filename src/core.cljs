@@ -98,3 +98,14 @@
 (defn seq?
     [value]
     (and (!= (. value first) nil) (!= (. value next) nil) (!= (. value rest) nil)))
+
+(defmacro ->
+    [x & forms]
+    (loop [x x, forms forms]
+        (if forms
+            (let [form (first forms)
+                threaded (if (seq? form)
+                           `(~(first form) ~x ~@(next form))
+                           (list form x))]
+            (recur threaded (next forms)))
+          x)))
