@@ -45,6 +45,13 @@
     ([x & next]
         `(let [$and ~x]
             (if $and (and ~@next) $and))))
+            
+(defmacro when
+    [test & body]
+    (list 'if test (cons 'do body)))
+    
+(defn not=
+    [x y] (if (= x y) false true))
       
 (defn false?
     [x] (=== x false))
