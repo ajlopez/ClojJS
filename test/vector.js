@@ -13,6 +13,30 @@ exports['Create vector'] = function (test) {
     test.deepEqual(vector.asArray(), [1, 2, 3]);
 };
 
+exports['Call vector'] = function (test) {
+    var vector = vectors.create([1, 2, 3]);
+    
+    test.ok(vector);
+    test.equal(vector.length(), 3);
+    test.equal(vector.call(null, 0), 1);
+    test.equal(vector.call(null, 1), 2);
+    test.equal(vector.call(null, 2), 3);
+
+    test.throws(
+        function () {
+            vector.call(null, 3);
+        },
+        "Index out of bounds"
+    );
+
+    test.throws(
+        function () {
+            vector.call(null, -1);
+        },
+        "Index out of bounds"
+    );
+};
+
 exports['Index out of bounds'] = function (test) {
     var vector = vectors.create([1, 2, 3]);
     
