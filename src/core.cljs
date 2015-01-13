@@ -1,13 +1,26 @@
 (ns cljs.core)
 
-(def defmacro (fn [name & fdecl]
+(def defmacro (fn 
+
+"Like defn, but the resulting function name is declared as a
+macro and will be used as a macro by the compiler when it is
+called."
+
+    [name & fdecl]
 	`(do 
         (def ~name (fn ~@fdecl))
         (set! (. ~name macro) true))))
 
 (set! (. defmacro macro) true)
 
-(defmacro defn [name & fdecl]
+(defmacro defn 
+
+"Same as (def name (fn [params* ] exprs*)) or (def
+name (fn ([params* ] exprs*)+)) with any doc-string or attrs added
+to the var metadata. prepost-map defines a map with optional keys
+:pre and :post that contain collections of pre or post conditions."
+    
+    [name & fdecl]
 	`(def ~name (fn ~@fdecl))
 )
 
