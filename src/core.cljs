@@ -114,6 +114,8 @@
 
 (defn dec [x] (- x 1))
 
+(defn pos? [x] (> x 0))
+
 (defmacro lazy-seq
     [& body]
     `(.create js/lazyseqs ((fn [] ~@body))))
