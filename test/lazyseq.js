@@ -22,3 +22,7 @@ exports['create and consume lazy seq'] = function (test) {
     test.equal(lseq.next().next().first(), 3);
     test.equal(lseq.next().next().first(), 3);
 }
+
+exports['create empty lazy seq'] = function (test) {
+    test.ok(lists.isEmptyList(lazyseqs.create(null)));
+}

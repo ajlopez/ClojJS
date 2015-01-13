@@ -18,3 +18,6 @@
 (let [x (iterate inc 1)]
     (is (= (first x) 1))
     (is (= (second x) 2)))
+
+(println (take 5 (iterate inc 1)))
+(is (= (take 5 (iterate inc 1)) '(1 2 3 4)))

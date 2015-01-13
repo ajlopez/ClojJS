@@ -163,3 +163,29 @@
 (defn count
     [x] (.length x ()))
 
+(defmacro assert-args
+  [& pairs]
+  `(do (when-not ~(first pairs)
+         (throw (Error.
+                  (str "requires " ~(second pairs)))))
+     ~(let [more (nnext pairs)]
+        (when more
+          (list* `assert-args more)))))
+
+(defmacro when-let
+    [bindings & body]
+    (assert-args
+        (vector? bindings) "a vector for its binding"
+        (= 2 (count bindings)) "exactly 2 forms in binding vector")
+        (let [form (bindings 0) tst (bindings 1)]
+            `(let [$temp ~tst]
+                (when $temp
+                    (let [~form $temp]
+                    ~@body)))))
+
+(defn take
+    [n coll]
+    (lazy-seq
+        (when (pos? n) 
+            (when-let [s (seq coll)]
+                (cons (first s) (take (dec n) (rest s)))))))
