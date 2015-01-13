@@ -29,4 +29,4 @@
 (is (= (next ()) nil))
 (is (= (rest ()) ()))
 
-(is (= (count ()) 0))(is (= (count '(1 2 3)) 3))
+(is (= (count ()) 0))(is (= (count '(1 2 3)) 3))(is (nil? (seq nil)))(is (nil? (seq ())))(is (= (seq "foo") '("f" "o" "o")))(is (= (seq [1 2 3]) '(1 2 3)))(is (= (seq '(1 2 3)) '(1 2 3)))
