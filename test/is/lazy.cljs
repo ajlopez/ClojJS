@@ -15,3 +15,6 @@
     (is (= (first x) 10))
     (is (= (second x) 11)))
 
+(let [x (iterate inc 1)]
+    (is (= (first x) 1))
+    (is (= (second x) 2)))

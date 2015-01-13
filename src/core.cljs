@@ -117,4 +117,6 @@
 (defmacro lazy-seq
     [& body]
     `(.create js/lazyseqs ((fn [] ~@body))))
-    
+
+(defn iterate
+    [f x] (cons x (lazy-seq (iterate f (f x)))))

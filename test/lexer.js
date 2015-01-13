@@ -135,6 +135,18 @@ exports['Get integer'] = function (test) {
     test.strictEqual(lexer.nextToken(), null);
 };
 
+exports['Get negative integer'] = function (test) {
+    var lexer = lexers.lexer('-123');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Integer);
+    test.equal(token.value, '-123');
+    
+    test.strictEqual(lexer.nextToken(), null);
+};
+
 exports['Get parenthesis as delimiter'] = function (test) {
     var lexer = lexers.lexer('()');
     
