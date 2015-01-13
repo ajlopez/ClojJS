@@ -50,6 +50,16 @@
     [test & body]
     (list 'if test (cons 'do body)))
     
+(defmacro cond
+    [& clauses]
+    (when clauses
+        (list 'if (first clauses)
+            (if (next clauses)
+                (second clauses)
+                (throw (Error.
+                         "cond requires an even number of forms")))
+            (cons 'cond (next (next clauses))))))
+    
 (defn not=
     [x y] (if (= x y) false true))
       
@@ -132,3 +142,4 @@
 
 (defn count
     [x] (.length x ()))
+
