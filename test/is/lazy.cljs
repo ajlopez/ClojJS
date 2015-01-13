@@ -10,4 +10,8 @@
 (let [x (positive-numbers)]
     (is (= (first x) 1))
     (is (= (second x) 2)))
-    
+
+(let [x (positive-numbers 10)]
+    (is (= (first x) 10))
+    (is (= (second x) 11)))
+
