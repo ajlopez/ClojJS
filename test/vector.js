@@ -13,6 +13,24 @@ exports['Create vector'] = function (test) {
     test.deepEqual(vector.asArray(), [1, 2, 3]);
 };
 
+exports['Index out of bounds'] = function (test) {
+    var vector = vectors.create([1, 2, 3]);
+    
+    test.throws(
+        function () {
+            vector.nth(3);
+        },
+        "Index out of bounds"
+    );
+    
+    test.throws(
+        function () {
+            vector.nth(-1);
+        },
+        "Index out of bounds"
+    );
+};
+
 exports['Vector has key'] = function (test) {
     var vector = vectors.create([1, 2, 3]);
     
