@@ -45,6 +45,18 @@ exports['Get name skipping line comment'] = function (test) {
     test.strictEqual(lexer.nextToken(), null);
 };
 
+exports['Get name skipping line comment ending in carriage return'] = function (test) {
+    var lexer = lexers.lexer('; this is a comment\rfoo');
+    
+    var token = lexer.nextToken();
+    
+    test.ok(token);
+    test.equal(token.type, TokenType.Name);
+    test.equal(token.value, 'foo');
+    
+    test.strictEqual(lexer.nextToken(), null);
+};
+
 exports['Get name with qualified namespace'] = function (test) {
     var lexer = lexers.lexer('cljs.core/foo');
     
