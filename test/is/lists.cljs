@@ -29,3 +29,4 @@
 (is (= (next ()) nil))
 (is (= (rest ()) ()))
 
+(is (= (count ()) 0))(is (= (count '(1 2 3)) 3))

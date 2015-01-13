@@ -129,3 +129,6 @@
 
 (defn iterate
     [f x] (cons x (lazy-seq (iterate f (f x)))))
+
+(defn count
+    [x] (.length x ()))
