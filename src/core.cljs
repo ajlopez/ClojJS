@@ -21,6 +21,36 @@
 
 (defn nnext [x] (next (next x)))
 
+(defmacro when
+    [test & body]
+    (list 'if test (cons 'do body)))
+
+(defmacro cond
+    [& clauses]
+    (when clauses
+        (list 'if (first clauses)
+            (if (next clauses)
+                (second clauses)
+                (throw (Error.
+                         "cond requires an even number of forms")))
+            (cons 'cond (next (next clauses))))))
+
+(defn spread
+    [arglist]
+    (cond
+        (nil? arglist) nil
+        (nil? (next arglist)) (seq (first arglist))
+        :else (cons (first arglist) (spread (next arglist)))))
+
+(defn list*
+    ([args] (seq args))
+    ([a args] (cons a args))
+    ([a b args] (cons a (cons b args)))
+    ([a b c args] (cons a (cons b (cons c args))))
+    ([a b c d & more]
+        (cons a (cons b (cons c (cons d (spread more)))))))
+
+
 (defmacro println [& args]
     `(.log js/console ((str ~@args))))
     
@@ -46,20 +76,6 @@
         `(let [$and ~x]
             (if $and (and ~@next) $and))))
             
-(defmacro when
-    [test & body]
-    (list 'if test (cons 'do body)))
-    
-(defmacro cond
-    [& clauses]
-    (when clauses
-        (list 'if (first clauses)
-            (if (next clauses)
-                (second clauses)
-                (throw (Error.
-                         "cond requires an even number of forms")))
-            (cons 'cond (next (next clauses))))))
-    
 (defn not=
     [x y] (if (= x y) false true))
       
