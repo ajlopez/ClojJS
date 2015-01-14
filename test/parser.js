@@ -5,6 +5,7 @@ var keywords = require('../lib/keyword');
 var lists = require('../lib/list');
 var vectors = require('../lib/vector');
 var maps = require('../lib/map');
+var sets = require('../lib/set');
 
 exports['Parse empty text'] = function (test) {
     var parser = parsers.parser('');
@@ -201,6 +202,20 @@ exports['Parse map with keywords'] = function (test) {
     test.equal(result.get(keywords.keyword("one")), 1);
     test.equal(result.get(keywords.keyword("two")), 2);
     test.equal(result.get(keywords.keyword("three")), null);
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+exports['Parse set'] = function (test) {
+    var parser = parsers.parser('#{ "one" "two" }');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(sets.isSet(result));
+    test.ok(result.has("one"));
+    test.ok(result.has("two"));
+    test.ok(!result.has("three"));
     
     test.strictEqual(parser.parse(), null);
 }
