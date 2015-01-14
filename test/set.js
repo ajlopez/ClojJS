@@ -117,3 +117,29 @@ exports['Remove key'] = function (test) {
     test.ok(set2.has("three"));
     test.ok(!set2.has("four"));
 };
+
+exports['Remove keyword key'] = function (test) {
+    var set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
+    
+    var set2 = set.remove(keywords.keyword("two"));
+    
+    test.ok(set);
+    test.ok(set.has(keywords.keyword("one")));
+    test.ok(set.has(keywords.keyword("two")));
+    test.ok(set.has(keywords.keyword("three")));
+    test.ok(!set.has(keywords.keyword("four")));
+    
+    test.ok(set2);
+    test.ok(set2.has(keywords.keyword("one")));
+    test.ok(!set2.has(keywords.keyword("two")));
+    test.ok(set2.has(keywords.keyword("three")));
+    test.ok(!set2.has(keywords.keyword("four")));
+};
+
+exports['Remove non existing key'] = function (test) {
+    var set = sets.create(["one", "two", "three"]);
+    
+    var set2 = set.remove("four");
+    
+    test.strictEqual(set2, set);
+};
