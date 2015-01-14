@@ -91,3 +91,11 @@ exports['Create and modify set'] = function (test) {
     test.ok(set2.has("three"));
     test.ok(set2.has("four"));
 };
+
+exports['Add existing key'] = function (test) {
+    var set = sets.create(["one", "two", "three"]);
+    
+    var set2 = set.add("two");
+    
+    test.strictEqual(set2, set);
+};
