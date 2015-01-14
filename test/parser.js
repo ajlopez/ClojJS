@@ -220,6 +220,38 @@ exports['Parse set'] = function (test) {
     test.strictEqual(parser.parse(), null);
 }
 
+exports['Parse list with set'] = function (test) {
+    var parser = parsers.parser('(to-array #{ "one" "two" })');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(lists.isList(result));
+    
+    result = result.next().first();
+    
+    test.ok(sets.isSet(result));
+    test.ok(result.has("one"));
+    test.ok(result.has("two"));
+    test.ok(!result.has("three"));
+    
+    test.strictEqual(parser.parse(), null);
+}
+
+exports['Parse set with keywords'] = function (test) {
+    var parser = parsers.parser('#{ :one :two }');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(sets.isSet(result));
+    test.ok(result.has(keywords.keyword("one")));
+    test.ok(result.has(keywords.keyword("two")));
+    test.ok(!result.has(keywords.keyword("three")));
+    
+    test.strictEqual(parser.parse(), null);
+}
+
 exports['Parse quote name'] = function (test) {
     var parser = parsers.parser("'x");
     
