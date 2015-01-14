@@ -99,3 +99,21 @@ exports['Add existing key'] = function (test) {
     
     test.strictEqual(set2, set);
 };
+
+exports['Remove key'] = function (test) {
+    var set = sets.create(["one", "two", "three"]);
+    
+    var set2 = set.remove("two");
+    
+    test.ok(set);
+    test.ok(set.has("one"));
+    test.ok(set.has("two"));
+    test.ok(set.has("three"));
+    test.ok(!set.has("four"));
+    
+    test.ok(set2);
+    test.ok(set2.has("one"));
+    test.ok(!set2.has("two"));
+    test.ok(set2.has("three"));
+    test.ok(!set2.has("four"));
+};
