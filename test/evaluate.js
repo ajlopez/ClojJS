@@ -1,5 +1,8 @@
 
 var clojjs = require('..');
+var maps = require('../lib/map');
+var sets = require('../lib/set');
+var keywords = require('../lib/keyword');
 
 exports['Evaluate integer'] = function (test) {
     var result = clojjs.evaluate('42');
@@ -88,6 +91,26 @@ exports['Evaluate map to object'] = function (test) {
     test.equal(result.one, 1);
     test.equal(result.two, 2);
     test.equal(result.three, 3);
+}
+
+exports['Evaluate map'] = function (test) {
+    var result = clojjs.evaluate('{ :one 1 :two 2 :three 3 }');
+    
+    test.ok(result);
+    test.ok(maps.isMap(result));
+    test.equal(result.get(keywords.keyword('one')), 1);
+    test.equal(result.get(keywords.keyword('two')), 2);
+    test.equal(result.get(keywords.keyword('three')), 3);
+}
+
+exports['Evaluate set'] = function (test) {
+    var result = clojjs.evaluate('#{ 1 2 3 }');
+    
+    test.ok(result);
+    test.ok(sets.isSet(result));
+    test.ok(result.has(1));
+    test.ok(result.has(2));
+    test.ok(result.has(3));
 }
 
 exports['Evaluate str'] = function (test) {

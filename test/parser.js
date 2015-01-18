@@ -220,6 +220,23 @@ exports['Parse set'] = function (test) {
     test.strictEqual(parser.parse(), null);
 }
 
+exports['Parse with integers'] = function (test) {
+    var parser = parsers.parser('#{ 1 2 3 }');
+    
+    var result = parser.parse();
+    
+    test.ok(result);
+    test.ok(sets.isSet(result));
+    test.ok(result.has(1));
+    test.ok(result.has(2));
+    test.ok(result.has(3));
+    test.ok(!result.has(4));
+    test.equal(result.asString(), '#{1 2 3}');
+    test.ok(result.equals(sets.create([1,2,3])));
+    
+    test.strictEqual(parser.parse(), null);
+}
+
 exports['Parse list with set'] = function (test) {
     var parser = parsers.parser('(to-array #{ "one" "two" })');
     

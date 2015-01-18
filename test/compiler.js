@@ -165,6 +165,14 @@ exports['Compile keyword'] = function (test) {
     test.equal(compile(":foo"), 'keywords.keyword("foo")');
 };
 
+exports['Compile map'] = function (test) {
+    test.equal(compile("{ :one 1 :two 2 }"), 'maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2])');
+};
+
+exports['Compile set'] = function (test) {
+    test.equal(compile("#{ 1 2 3 }"), 'sets.create([1, 2, 3])');
+};
+
 exports['Compile backquote'] = function (test) {
     test.equal(compile("`42"), '42');
     test.equal(compile("`x"), 'symbols.symbol("x")');
