@@ -143,3 +143,23 @@ exports['Remove non existing key'] = function (test) {
     
     test.strictEqual(set2, set);
 };
+
+exports['Equals on same keys/values'] = function (test) {
+    var set = sets.create([ 1, 2, 3 ]);
+    var set2 = sets.create([ 1, 3, 2 ]);
+    var set3 = sets.create([ 1, 2, 4 ]);
+    var set4 = sets.create([ 1, 4 ]);
+    
+    test.ok(set.equals(set2));
+    test.ok(set2.equals(set));
+    test.ok(!set.equals(set3));
+    test.ok(!set2.equals(set3));
+    test.ok(!set3.equals(set));
+    test.ok(!set3.equals(set2));
+    test.ok(!set.equals(set4));
+    test.ok(!set4.equals(set));
+    
+    test.ok(!set.equals(42));
+    test.ok(!set.equals(null));
+    test.ok(!set.equals("foo"));
+};
