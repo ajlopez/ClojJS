@@ -83,6 +83,24 @@ exports['Create and modify map'] = function (test) {
     test.equal(map2.get("three"), 4);
 };
 
+exports['Assoc'] = function (test) {
+    var map = maps.create(["one", 1, "two", 2, "three", 3]);
+    
+    var map2 = map.assoc(["four", 4, "three", 0, "five", 5]);
+    
+    test.ok(map);
+    test.equal(map.get("one"), 1);
+    test.equal(map.get("two"), 2);
+    test.equal(map.get("three"), 3);
+    
+    test.ok(map2);
+    test.equal(map2.get("one"), 1);
+    test.equal(map2.get("two"), 2);
+    test.equal(map2.get("three"), 0);
+    test.equal(map2.get("four"), 4);
+    test.equal(map2.get("five"), 5);
+};
+
 exports['Equals on same keys/values'] = function (test) {
     var map = maps.create(["one", 1, "two", 2, "three", 3]);
     var map2 = maps.create(["one", 1, "three", 3, "two", 2]);
