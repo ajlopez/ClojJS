@@ -105,26 +105,26 @@ called."
 (defn some?
     [x] (not (nil? x)))
 
-(defn symbol?
-    [x] (.isSymbol js/symbols (x)))
+(defmacro symbol?
+    [x] `(.isSymbol js/symbols (~x)))
 
-(defn keyword?
-    [x] (.isKeyword js/keywords (x)))
+(defmacro keyword?
+    [x] `(.isKeyword js/keywords (~x)))
 
-(defn vector?
-    [x] (.isVector js/vectors (x)))
+(defmacro vector?
+    [x] `(.isVector js/vectors (~x)))
 
-(defn map?
-    [x] (.isMap js/maps (x)))
+(defmacro map?
+    [x] `(.isMap js/maps (~x)))
 
-(defn array?
-    [x] (.isArray js/Array (x)))
+(defmacro array?
+    [x] `(.isArray js/Array (~x)))
 
-(defn get
-    ([map key] (.get map (key)))
-    ([map key missing] (if (.has map (key))
-                            (.get map (key))
-                            missing)))
+(defmacro get
+    ([map key] `(.get ~map (~key)))
+    ([map key missing] `(if (.has ~map (~key))
+                            (.get ~map (~key))
+                            ~missing)))
 
 (defn to-object
     [value]
