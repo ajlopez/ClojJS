@@ -120,11 +120,11 @@ called."
 (defn array?
     [x] (.isArray js/Array (x)))
 
-(defmacro get
-    ([map key] `(.get ~map (~key)))
-    ([map key missing] `(if (.has ~map (~key))
-                            (.get ~map (~key))
-                            ~missing)))
+(defn get
+    ([map key] (.get map (key)))
+    ([map key missing] (if (.has map (key))
+                            (.get map (key))
+                            missing)))
 
 (defn to-object
     [value]
