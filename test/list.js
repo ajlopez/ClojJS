@@ -1,6 +1,7 @@
 
 var lists = require('../lib/list');
 var vectors = require('../lib/vector');
+var utils = require('../lib/utils');
 
 exports['Create list'] = function (test) {
     var list = lists.list(1, null);
@@ -26,4 +27,8 @@ exports['Is list'] = function (test) {
     test.ok(!lists.isList(true));
     test.ok(!lists.isList(42));
     test.ok(!lists.isList("foo"));
+};
+
+exports['Equals'] = function (test) {
+    test.ok(utils.equals(lists.create([1,2,3,4]), lists.create([1,2,3,4])));
 };
