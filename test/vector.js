@@ -84,3 +84,16 @@ exports['Is vector'] = function (test) {
     test.ok(!vectors.isVector(42));
     test.ok(!vectors.isVector("foo"));
 };
+
+exports['Assoc'] = function (test) {
+    var vector = vectors.create([1, 2, 3]);
+    var vector2 = vector.assoc([1, 3, 3, 4]);
+    
+    test.ok(!vector.equals(vector2));
+    test.ok(!vector2.equals(vector));
+    
+    test.ok(vector2.get(0), 1);
+    test.ok(vector2.get(1), 3);
+    test.ok(vector2.get(2), 3);
+    test.ok(vector2.get(3), 4);
+};
