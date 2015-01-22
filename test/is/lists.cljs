@@ -1,6 +1,10 @@
 
 (println "List Tests")
 
+(is (= (cons 1 '(2 3)) '(1 2 3)))
+(is (= (cons 1 [2 3]) '(1 2 3)))
+
+
 (is (= (length '(2)) 1))
 (is (= (length '(1 2)) 2))
 (is (= (length '(1 2 3)) 3))
