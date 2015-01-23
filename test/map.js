@@ -120,3 +120,31 @@ exports['Equals on same keys/values'] = function (test) {
     test.ok(!map.equals(null));
     test.ok(!map.equals("foo"));
 };
+
+exports['Remove key'] = function (test) {
+    var map = maps.create(["one", 1, "two", 2, "three", 3]);
+    var map2 = map.remove("three");
+    
+    test.equal(map.get("one"), 1);
+    test.equal(map.get("two"), 2);
+    test.equal(map.get("three"), 3);
+    
+    test.equal(map2.get("one"), 1);
+    test.equal(map2.get("two"), 2);
+    test.equal(map2.get("three"), null);
+    test.ok(!map2.has("three"));
+};
+
+exports['Remove keyword'] = function (test) {
+    var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    var map2 = map.remove(keywords.keyword("three"));
+    
+    test.equal(map.get(keywords.keyword("one")), 1);
+    test.equal(map.get(keywords.keyword("two")), 2);
+    test.equal(map.get(keywords.keyword("three")), 3);
+    
+    test.equal(map2.get(keywords.keyword("one")), 1);
+    test.equal(map2.get(keywords.keyword("two")), 2);
+    test.equal(map2.get(keywords.keyword("three")), null);
+    test.ok(!map2.has(keywords.keyword("three")));
+};
