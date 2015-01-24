@@ -101,6 +101,24 @@ exports['Assoc'] = function (test) {
     test.equal(map2.get("five"), 5);
 };
 
+exports['Dissoc'] = function (test) {
+    var map = maps.create(["one", 1, "two", 2, "three", 3, "four", 4]);
+    
+    var map2 = map.dissoc(["four", "two"]);
+    
+    test.ok(map);
+    test.equal(map.get("one"), 1);
+    test.equal(map.get("two"), 2);
+    test.equal(map.get("three"), 3);
+    test.equal(map.get("four"), 4);
+    
+    test.ok(map2);
+    test.equal(map2.get("one"), 1);
+    test.equal(map2.get("two"), null);
+    test.equal(map2.get("three"), 3);
+    test.equal(map2.get("four"), null);
+};
+
 exports['Equals on same keys/values'] = function (test) {
     var map = maps.create(["one", 1, "two", 2, "three", 3]);
     var map2 = maps.create(["one", 1, "three", 3, "two", 2]);

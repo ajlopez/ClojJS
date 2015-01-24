@@ -204,4 +204,9 @@ called."
     [map & keyvalues]
     (.assoc map ((to-array keyvalues))))
     
+(defn dissoc
+  "dissoc[iate]. Returns a new map of the same (hashed/sorted) type,
+  that does not contain a mapping for key(s)."
+  [map & keys]
+    (.dissoc map ((to-array keys))))
 
