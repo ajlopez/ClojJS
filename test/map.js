@@ -119,6 +119,15 @@ exports['Dissoc'] = function (test) {
     test.equal(map2.get("four"), null);
 };
 
+exports['Dissoc non existing keys'] = function (test) {
+    var map = maps.create(["one", 1, "two", 2, "three", 3, "four", 4]);
+    
+    var map2 = map.dissoc(["five", "ten"]);
+    
+    test.ok(map);
+    test.strictEqual(map2, map);
+};
+
 exports['Equals on same keys/values'] = function (test) {
     var map = maps.create(["one", 1, "two", 2, "three", 3]);
     var map2 = maps.create(["one", 1, "three", 3, "two", 2]);
