@@ -29,3 +29,28 @@ exports['Compile symbol with namespace'] = function (test) {
 exports['Compile def in default namespace'] = function (test) {
     test.equal(clojjs.compile('(def one 1)'), 'cljs.core.one = 1');
 };
+
+exports['Compile def in current namespace'] = function (test) {
+    var context = { currentns: 'user' };
+    test.equal(clojjs.compile('(def one 1)', context), 'user.one = 1');
+    
+    test.ok(context.nss);
+    test.ok(context.nss.user.vars);
+    test.ok(context.nss.user.vars.indexOf('one') >= 0);
+};
+
+exports['Compile symbol with qualified namespace'] = function (test) {
+    test.equal(clojjs.compile('core.logic/first'), 'core.logic.first');
+};
+
+exports['Compile symbol in js namespace'] = function (test) {
+    test.equal(clojjs.compile('js/console'), 'console');
+};
+
+exports['Compile native invoke with initial dot'] = function (test) {
+    test.equal(clojjs.compile('(.log js/console (1 (+ 1 1)))'), 'console.log(1, (1) + (1))');
+};
+
+exports['Compile local symbol'] = function (test) {
+    test.equal(clojjs.compile('x', { locals: [ 'x', 'y' ] }), 'x');
+};
