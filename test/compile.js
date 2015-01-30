@@ -12,11 +12,9 @@ exports['Compile string'] = function (test) {
     test.strictEqual(clojjs.compile('"foo"'), '"foo"');
 };
 
-/*
 exports['Compile nil'] = function (test) {
     test.strictEqual(clojjs.compile('nil'), 'null');
 };
-*/
 
 exports['Compile symbol in default namespace'] = function (test) {
     test.equal(clojjs.compile('first'), 'cljs.core.first');
