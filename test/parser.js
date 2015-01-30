@@ -17,6 +17,12 @@ exports['Parse empty text'] = function (test) {
     test.strictEqual(parser.parse(), null);
 }
 
+exports['Has token on empty text'] = function (test) {
+    var parser = parsers.parser('');
+    
+    test.equal(parser.hasToken(), false);
+}
+
 exports['Parse integer'] = function (test) {
     var parser = parsers.parser('42');
     
@@ -26,6 +32,12 @@ exports['Parse integer'] = function (test) {
     test.strictEqual(result, 42);
 
     test.strictEqual(parser.parse(), null);
+}
+
+exports['Has token on integer'] = function (test) {
+    var parser = parsers.parser('42');
+    
+    test.equal(parser.hasToken(), true);
 }
 
 exports['Parse string'] = function (test) {
