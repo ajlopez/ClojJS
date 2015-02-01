@@ -31,12 +31,12 @@ exports['Compile symbol with namespace'] = function (test) {
 };
 
 exports['Compile def in default namespace'] = function (test) {
-    test.equal(compiler.compile(lists.create([symbols.symbol('def'), symbols.symbol('one'), 1])), '@cljs.core.one = 1');
+    test.equal(compiler.compile(lists.create([symbols.symbol('def'), symbols.symbol('one'), 1])), '//@@\ncljs.core.one = 1');
 };
 
 exports['Compile def in current namespace'] = function (test) {
     var context = { currentns: 'user' };
-    test.equal(compiler.compile(lists.create([symbols.symbol('def'), symbols.symbol('one'), 1]), context), '@user.one = 1');
+    test.equal(compiler.compile(lists.create([symbols.symbol('def'), symbols.symbol('one'), 1]), context), '//@@\nuser.one = 1');
     
     test.ok(context.nss);
     test.ok(context.nss.user.vars);
@@ -107,13 +107,13 @@ exports['Compile loop'] = function (test) {
 };
 
 exports['Compile def'] = function (test) {
-    test.equal(compile('(def one 1)'), '@cljs.core.one = 1');
-    test.equal(compile('(def one (fn [x] (+ x 1)))'), '@cljs.core.one = function (x) { return (x) + (1); }');
-    test.equal(compile('(def my-one (fn [x] (+ x 1)))'), '@cljs.core.my_HY_one = function (x) { return (x) + (1); }');
+    test.equal(compile('(def one 1)'), '//@@\ncljs.core.one = 1');
+    test.equal(compile('(def one (fn [x] (+ x 1)))'), '//@@\ncljs.core.one = function (x) { return (x) + (1); }');
+    test.equal(compile('(def my-one (fn [x] (+ x 1)))'), '//@@\ncljs.core.my_HY_one = function (x) { return (x) + (1); }');
 };
 
 exports['Compile def in current ns'] = function (test) {
-    test.equal(compile('(def one 1)', { currentns: 'user.core' }), '@user.core.one = 1');
+    test.equal(compile('(def one 1)', { currentns: 'user.core' }), '//@@\nuser.core.one = 1');
 };
 
 exports['Compile add'] = function (test) {

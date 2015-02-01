@@ -25,7 +25,7 @@ exports['Compile symbol with namespace'] = function (test) {
 };
 
 exports['Compile def in default namespace'] = function (test) {
-    test.equal(clojjs.compile('(def one 1)'), 'cljs.core.one = 1');
+    test.ok(clojjs.compile('(def one 1)').indexOf('cljs.core.one = 1') >= 0);
 };
 
 exports['Compile def in current namespace'] = function (test) {
@@ -33,7 +33,7 @@ exports['Compile def in current namespace'] = function (test) {
     if (typeof user == 'undefined')
         user = { };
         
-    test.equal(clojjs.compile('(def one 1)', context), 'user.one = 1');
+    test.ok(clojjs.compile('(def one 1)', context).indexOf('user.one = 1') >= 0);
     
     test.ok(context.nss);
     test.ok(context.nss.user.vars);
@@ -102,11 +102,11 @@ exports['Compile loop'] = function (test) {
 };
 
 exports['Compile def'] = function (test) {
-    test.equal(clojjs.compile('(def one 1)'), 'cljs.core.one = 1');
+    test.ok(clojjs.compile('(def one 1)').indexOf('cljs.core.one = 1') >= 0);
     test.equal(cljs.core.one, 1);
-    test.equal(clojjs.compile('(def one (fn [x] (+ x 1)))'), 'cljs.core.one = function (x) { return (x) + (1); }');
+    test.ok(clojjs.compile('(def one (fn [x] (+ x 1)))').indexOf('cljs.core.one = function (x) { return (x) + (1); }') >= 0);
     test.equal(typeof cljs.core.one, 'function');
-    test.equal(clojjs.compile('(def my-one (fn [x] (+ x 1)))'), 'cljs.core.my_HY_one = function (x) { return (x) + (1); }');
+    test.ok(clojjs.compile('(def my-one (fn [x] (+ x 1)))').indexOf('cljs.core.my_HY_one = function (x) { return (x) + (1); }') >= 0);
     test.equal(typeof cljs.core.my_HY_one, 'function');    
 };
 
@@ -114,7 +114,7 @@ exports['Compile def in current ns'] = function (test) {
     if (typeof user.core == 'undefined')
         user.core = { };
         
-    test.equal(clojjs.compile('(def one 1)', { currentns: 'user.core' }), 'user.core.one = 1');
+    test.ok(clojjs.compile('(def one 1)', { currentns: 'user.core' }).indexOf('user.core.one = 1') >= 0);
 };
 
 exports['Compile add'] = function (test) {
