@@ -149,6 +149,11 @@ exports['Compile set!'] = function (test) {
     test.equal(compile('(set! (. y length) (+ 1 2))', context), 'y.length = (1) + (2)');
 };
 
+exports['Compile set! macro as immediate'] = function (test) {
+    var context = { locals: ['x', 'y'] };
+    test.equal(compile('(set! (. v macro) true)', context), '//@@\ncljs.core.v.macro = true');
+};
+
 exports['Compile quote'] = function (test) {
     test.equal(compile("'42"), '42');
     test.equal(compile("'x"), 'symbols.symbol("x")');
