@@ -117,6 +117,9 @@ called."
 (defn map?
     [x] (.isMap js/maps (x)))
 
+(defn set?
+    [x] (.isSet js/sets (x)))
+
 (defn array?
     [x] (.isArray js/Array (x)))
 
