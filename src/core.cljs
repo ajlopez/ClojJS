@@ -213,3 +213,15 @@ called."
   [map & keys]
     (.dissoc map ((to-array keys))))
 
+(defn apply
+  "Applies fn f to the argument list formed by prepending intervening arguments to args."
+  ([f args]
+     (. f (apply nil (to-array (seq args)))))
+  ([f x args]
+     (. f (apply nil (to-array (list* x args)))))
+  ([f x y args]
+     (. f (apply nil (to-array (list* x y args)))))
+  ([f x y z args]
+     (. f (apply nil (to-array (list* x y z args)))))
+  ([f a b c d & args]
+     (. f (apply nil (to-array (cons a (cons b (cons c (cons d (spread args))))))))))
