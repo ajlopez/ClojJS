@@ -225,3 +225,6 @@ called."
      (. f (apply nil (to-array (list* x y z args)))))
   ([f a b c d & args]
      (. f (apply nil (to-array (cons a (cons b (cons c (cons d (spread args))))))))))
+     
+(defn keys
+    [x] (.create js/lists ((.getKeys x ()))))
