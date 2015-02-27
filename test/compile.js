@@ -52,6 +52,10 @@ exports['Compile native invoke with initial dot'] = function (test) {
     test.equal(clojjs.compile('(.log js/console (1 (+ 1 1)))'), 'console.log(1, (1) + (1))');
 };
 
+exports['Compile native property with initial dot'] = function (test) {
+    test.equal(clojjs.compile('(.length "foo")'), '"foo".length');
+};
+
 exports['Compile local symbol'] = function (test) {
     test.equal(clojjs.compile('x', { locals: [ 'x', 'y' ] }), 'x');
 };

@@ -227,4 +227,8 @@ called."
      (. f (apply nil (to-array (cons a (cons b (cons c (cons d (spread args))))))))))
      
 (defn keys
-    [x] (.create js/lists ((.getKeys x ()))))
+    [x] (if (nil? x) nil 
+            (let [keys (.getKeys x ())]
+                (if (= (.length keys) 0)
+                    nil
+                    (.create js/lists (keys))))))
