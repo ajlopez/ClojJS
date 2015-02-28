@@ -232,3 +232,10 @@ called."
                 (if (= (.length keys) 0)
                     nil
                     (.create js/lists (keys))))))
+
+(defn vals
+    [x] (if (nil? x) nil 
+            (let [vals (.getValues x ())]
+                (if (= (.length vals) 0)
+                    nil
+                    (.create js/lists (vals))))))
