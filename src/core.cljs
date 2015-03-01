@@ -239,3 +239,10 @@ called."
                 (if (= (.length vals) 0)
                     nil
                     (.create js/lists (vals))))))
+
+(defn map
+    [f coll]
+    (let [s (seq coll)]
+        (if (nil? s)
+            nil
+            (cons (f (first s)) (map f (rest s))))))
