@@ -35,4 +35,13 @@
 
 (is (= (count ()) 0))(is (= (count '(1 2 3)) 3))(is (nil? (seq nil)))(is (nil? (seq ())))(is (= (seq "foo") '("f" "o" "o")))(is (= (seq [1 2 3]) '(1 2 3)))(is (= (seq [3 4]) '(3 4)))
 (is (= (seq '(1 2 3)) '(1 2 3)))(is (nil? (spread nil)))(is (= (list* [1 2 3]) '(1 2 3)))
-(is (= (list* 1 2 [3 4]) '(1 2 3 4)))(is (= (list* 1 2 '(3 4)) '(1 2 3 4)))(is (= (list* 1 2 3 4 '(5 6 7)) '(1 2 3 4 5 6 7)))(is (= (list* 1 2 3 4 5 '(6 7)) '(1 2 3 4 5 6 7)))
+(is (= (list* 1 2 [3 4]) '(1 2 3 4)))(is (= (list* 1 2 '(3 4)) '(1 2 3 4)))(is (= (list* 1 2 3 4 '(5 6 7)) '(1 2 3 4 5 6 7)))(is (= (list* 1 2 3 4 5 '(6 7)) '(1 2 3 4 5 6 7)))(is (list? '()))
+(is (list? '(1 2 3)))
+(is (not (list? 0)))
+(is (not (list? nil)))
+(is (not (list? [1 2 3])))
+(is (not (list? {})))
+(is (not (list? "foo")))
+
+
+

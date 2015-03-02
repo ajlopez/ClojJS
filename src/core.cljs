@@ -123,6 +123,9 @@ called."
 (defn array?
     [x] (.isArray js/Array (x)))
 
+(defn list?
+    [x] (.isList js/lists (x)))
+
 (defn get
     ([map key] (.get map (key)))
     ([map key missing] (if (.has map (key))
