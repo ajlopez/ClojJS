@@ -89,3 +89,12 @@
 (is (= (set? [1 2 3]) false))
 (is (= (set? {:one 1 :two 2}) false))
 (is (= (set? #{:one :two}) true))
+
+(is (= (coll? {}) true))
+(is (= (coll? #{}) true))
+(is (= (coll? []) true))
+(is (= (coll? ()) true))
+(is (= (coll? '(1 2 3)) true))
+(is (= (coll? "foo") false))
+(is (= (coll? 42) false))
+(is (= (coll? false) false))

@@ -125,6 +125,9 @@ called."
 
 (defn list?
     [x] (.isList js/lists (x)))
+    
+(defn coll?
+    [x] (or (map? x) (set? x) (list? x) (vector? x)))
 
 (defn get
     ([map key] (.get map (key)))
@@ -249,3 +252,4 @@ called."
         (if (nil? s)
             nil
             (cons (f (first s)) (map f (rest s))))))
+            
