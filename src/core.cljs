@@ -129,6 +129,11 @@ called."
 (defn coll?
     [x] (or (map? x) (set? x) (list? x) (vector? x)))
 
+(defn empty?
+  "Returns true if coll has no items - same as (not (seq coll)).
+  Please use the idiom (seq x) rather than (not (empty? x))"
+  [coll] (not (seq coll)))
+    
 (defn get
     ([map key] (.get map (key)))
     ([map key missing] (if (.has map (key))
