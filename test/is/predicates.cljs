@@ -98,3 +98,9 @@
 (is (= (coll? "foo") false))
 (is (= (coll? 42) false))
 (is (= (coll? false) false))
+
+(is (= (empty? ()) true))
+(is (= (empty? '(1 2 3)) false))
+(is (= (empty? []) true))
+(is (= (empty? {}) true))
+(is (= (empty? #{}) true))
