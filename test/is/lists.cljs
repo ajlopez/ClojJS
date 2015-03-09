@@ -44,10 +44,10 @@
 (is (not (list? {})))
 (is (not (list? "foo")))
 
-(is (= (nth ["a" "b" "c" "d"] 0) "a"))
-(is (= (nth ["a" "b" "c" "d"] 1) "b"))
-(is (= (nth [] 0 "nothing found") "nothing found"))
-(is (= (nth [0 1 2] 77 1337) 1337))
+(is (= (nth '("a" "b" "c" "d") 0) "a"))
+(is (= (nth '("a" "b" "c" "d") 1) "b"))
+(is (= (nth () 0 "nothing found") "nothing found"))
+(is (= (nth '(0 1 2) 77 1337) 1337))
 
 
 
