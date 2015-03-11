@@ -49,5 +49,8 @@
 (is (= (nth () 0 "nothing found") "nothing found"))
 (is (= (nth '(0 1 2) 77 1337) 1337))
 
+(is (= (pop '(1 2 3)) '(2 3)))
+(is (= (pop '(1 2 3 4)) '(2 3 4)))
+
 
 
