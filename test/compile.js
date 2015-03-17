@@ -194,3 +194,7 @@ exports['Compile native new with ending dot'] = function (test) {
     test.equal(clojjs.compile("(Date.)"), "new Date()");
     test.equal(clojjs.compile('(Error. "Invalid operation")'), 'new Error("Invalid operation")');
 };
+
+exports['Compile try'] = function (test) {
+    test.equal(clojjs.compile("(try (divide 1 0) (catch Exception e ((str \"caught exception: \" (.getMessage e)))))"), "try { core.cljs.divide(1, 0); } catch (e) { core.cljs.str.apply(null, 'caught exception: ', e.getMessage()); }");
+};
