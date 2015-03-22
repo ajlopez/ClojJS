@@ -52,6 +52,10 @@ exports['Compile native invoke with initial dot'] = function (test) {
     test.equal(clojjs.compile('(.log js/console (1 (+ 1 1)))'), 'console.log(1, (1) + (1))');
 };
 
+exports['Compile native invoke with initial dot and no arguments'] = function (test) {
+    test.equal(clojjs.compile('(.toUpperCase "foo" ())'), '"foo".toUpperCase()');
+};
+
 exports['Compile native property with initial dot'] = function (test) {
     test.equal(clojjs.compile('(.length "foo")'), '"foo".length');
 };
@@ -196,5 +200,5 @@ exports['Compile native new with ending dot'] = function (test) {
 };
 
 exports['Compile try'] = function (test) {
-    test.equal(clojjs.compile("(try (divide 1 0) (catch Exception e ((str \"caught exception: \" (.getMessage e)))))"), "try { core.cljs.divide.call(null, 1, 0) } catch (e) { core.cljs.str.call(null, \"caught exception: \", e.getMessage()) }");
+    test.equal(clojjs.compile("(try (divide 1 0) (catch Exception e ((str \"caught exception: \" (.getMessage e ())))))"), "try { cljs.core.divide.call(null, 1, 0) } catch (e) { cljs.core.str.call(null, \"caught exception: \", e.getMessage()) }");
 };
