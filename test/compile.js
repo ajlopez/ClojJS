@@ -200,5 +200,5 @@ exports['Compile native new with ending dot'] = function (test) {
 };
 
 exports['Compile try'] = function (test) {
-    test.equal(clojjs.compile("(try (divide 1 0) (catch Exception e ((str \"caught exception: \" (.getMessage e ())))))"), "try { cljs.core.divide.call(null, 1, 0) } catch (e) { cljs.core.str.call(null, \"caught exception: \", e.getMessage()) }");
+    test.equal(clojjs.compile("(try (divide 1 0) (catch Exception e (str \"caught exception: \" (.getMessage e ()))))"), "try { cljs.core.divide.call(null, 1, 0) } catch (e) { cljs.core.str.call(null, \"caught exception: \", e.getMessage()) }");
 };
