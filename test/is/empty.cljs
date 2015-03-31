@@ -1,0 +1,1 @@
+(println "Empty tests")(is (= (empty '(1 2)) '()))(is (= (empty [1 2]) []))(is (= (empty {1 2}) {}))(is (= (empty #{1 2}) #{}))
