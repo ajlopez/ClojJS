@@ -258,3 +258,9 @@ called."
             nil
             (cons (f (first s)) (map f (rest s))))))
             
+
+(defn not-empty
+  "If coll is empty, returns nil, else coll"
+  [coll] (when (seq coll) coll))
+  
+  
