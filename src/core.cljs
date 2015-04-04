@@ -73,6 +73,11 @@ called."
             true
             (throw (Error. (str "Assert error: " '~cond " is not true")))))
 
+(defmacro is-not [cond]
+    `(if ~cond
+            (throw (Error. (str "Assert error: " '~cond " is not true")))
+            true))
+            
 (defn not [x]
     (if x false true))
     
@@ -263,4 +268,8 @@ called."
   "If coll is empty, returns nil, else coll"
   [coll] (when (seq coll) coll))
   
+(defn empty?
+  "Returns true if coll has no items - same as (not (seq coll)).
+  Please use the idiom (seq x) rather than (not (empty? x))"
+  [coll] (not (seq coll)))
   
