@@ -138,6 +138,10 @@ exports['Compile subtract'] = function (test) {
     test.equal(clojjs.compile('(- 1 2 3)'), '(1) - (2) - (3)');
 };
 
+exports['Compile modulus'] = function (test) {
+    test.equal(clojjs.compile('(% 1 2)'), '(1) % (2)');
+};
+
 exports['Compile comparisons'] = function (test) {
     test.equal(clojjs.compile('(= 1 2)'), 'cljs.core.equals.call(null, 1, 2)');
     test.equal(clojjs.compile('(!= 1 2)'), '(1) != (2)');
