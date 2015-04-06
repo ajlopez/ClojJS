@@ -33,6 +33,7 @@
 (is (= (next ()) nil))
 (is (= (rest ()) ()))
 
+(is (= (count nil) 0))
 (is (= (count ()) 0))(is (= (count '(1 2 3)) 3))(is (nil? (seq nil)))(is (nil? (seq ())))(is (nil? (seq [])))
 (is (= (seq "foo") '("f" "o" "o")))(is (= (seq [1 2 3]) '(1 2 3)))(is (= (seq [3 4]) '(3 4)))
 (is (= (seq '(1 2 3)) '(1 2 3)))(is (nil? (spread nil)))(is (= (list* [1 2 3]) '(1 2 3)))

@@ -190,7 +190,9 @@ called."
     [f x] (cons x (lazy-seq (iterate f (f x)))))
 
 (defn count
-    [x] (.length x ()))
+    [x] (if (nil? x)
+            0
+            (.length x ())))
 
 (defmacro assert-args
   [& pairs]
