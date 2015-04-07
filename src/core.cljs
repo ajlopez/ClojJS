@@ -275,3 +275,13 @@ called."
   Please use the idiom (seq x) rather than (not (empty? x))"
   [coll] (not (seq coll)))
   
+(defn vector
+  "Creates a new vector containing the args."
+  ([] [])
+  ([a] [a])
+  ([a b] [a b])
+  ([a b c] [a b c])
+  ([a b c d] [a b c d])
+  ([a b c d & args]
+     (.create js/vectors ((cons a (cons b (cons c (cons d args))))))))
+     
