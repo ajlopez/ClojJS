@@ -13,6 +13,16 @@ exports['Create vector'] = function (test) {
     test.deepEqual(vector.asArray(), [1, 2, 3]);
 };
 
+exports['Create vector with nil'] = function (test) {
+    var vector = vectors.create([null]);
+    
+    test.ok(vector);
+    test.equal(vector.length(), 1);
+    test.equal(vector.get(0), null);
+    
+    test.deepEqual(vector.asArray(), [null]);
+};
+
 exports['Call vector'] = function (test) {
     var vector = vectors.create([1, 2, 3]);
     
