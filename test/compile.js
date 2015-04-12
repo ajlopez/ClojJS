@@ -68,6 +68,10 @@ exports['Compile list'] = function (test) {
     test.equal(clojjs.compile('(list 1 2 3)'), 'cljs.core.list.call(null, 1, 2, 3)');
 };
 
+exports['Compile list with variables'] = function (test) {
+    test.equal(clojjs.compile('(list a b c)'), 'cljs.core.list.call(null, cljs.core.a, cljs.core.b, cljs.core.c)');
+};
+
 exports['Compile fn'] = function (test) {
     test.equal(clojjs.compile('(fn [x y] (list x y))'), 'function (x, y) { return cljs.core.list.call(null, x, y); }');
 };
@@ -172,6 +176,10 @@ exports['Compile quote'] = function (test) {
 
 exports['Compile vector'] = function (test) {
     test.equal(clojjs.compile("[1 2]"), 'vectors.create([1, 2])');
+};
+
+exports['Compile vector with variables'] = function (test) {
+    test.equal(clojjs.compile("[a b]"), 'vectors.create([cljs.core.a, cljs.core.b])');
 };
 
 exports['Compile keyword'] = function (test) {
