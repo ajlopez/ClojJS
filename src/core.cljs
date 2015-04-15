@@ -285,3 +285,8 @@ called."
   ([a b c d & args]
      (.create js/vectors ((cons a (cons b (cons c (cons d args))))))))
      
+(defn repeat
+  "Returns a lazy (infinite!, or length n if supplied) sequence of xs."
+  ([x] (lazy-seq (cons x (repeat x))))
+  ([n x] (take n (repeat x))))
+
