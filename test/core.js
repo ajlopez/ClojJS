@@ -38,6 +38,13 @@ exports['Execute core file'] = function (test) {
     test.ok(cljs.core.is);
 };
 
+exports['Evaluate less'] = function (test) {
+    test.equal(cljs.core.less(1, 2), true);
+    test.equal(cljs.core.less(2, 2), false);
+    test.equal(cljs.core.less("foo", "bar"), false);
+    test.equal(cljs.core.less("bar", "foo"), true);
+}
+
 exports['Evaluate second'] = function (test) {
     test.equal(clojjs.evaluate("(second '(1 2 3))"), 2);
     test.equal(clojjs.evaluate("(second '(1 (2 3) 4))").asString(), '(2 3)');
