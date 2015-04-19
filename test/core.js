@@ -45,6 +45,13 @@ exports['Evaluate less'] = function (test) {
     test.equal(cljs.core.less("bar", "foo"), true);
 }
 
+exports['Evaluate greater'] = function (test) {
+    test.equal(cljs.core.greater(3, 2), true);
+    test.equal(cljs.core.greater(2, 2), false);
+    test.equal(cljs.core.greater("bar", "foo"), false);
+    test.equal(cljs.core.greater("foo", "bar"), true);
+}
+
 exports['Evaluate second'] = function (test) {
     test.equal(clojjs.evaluate("(second '(1 2 3))"), 2);
     test.equal(clojjs.evaluate("(second '(1 (2 3) 4))").asString(), '(2 3)');
