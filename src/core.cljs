@@ -313,3 +313,6 @@ called."
           (chunk-cons (chunk b) 
                       (when (comp i end) 
                         (range i end step)))))))))
+
+(defmacro comment [& body] nil)
+
