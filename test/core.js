@@ -45,7 +45,7 @@ exports['Evaluate less'] = function (test) {
     test.equal(cljs.core.less("bar", "foo"), true);
 }
 
-exports['Evaluate lessequal'] = function (test) {
+exports['Evaluate less equal'] = function (test) {
     test.equal(cljs.core.lessEqual(1, 2), true);
     test.equal(cljs.core.lessEqual(2, 2), true);
     test.equal(cljs.core.lessEqual(3, 2), false);
@@ -59,6 +59,15 @@ exports['Evaluate greater'] = function (test) {
     test.equal(cljs.core.greater(2, 2), false);
     test.equal(cljs.core.greater("bar", "foo"), false);
     test.equal(cljs.core.greater("foo", "bar"), true);
+}
+
+exports['Evaluate greater equal'] = function (test) {
+    test.equal(cljs.core.greaterEqual(3, 2), true);
+    test.equal(cljs.core.greaterEqual(3, 3), true);
+    test.equal(cljs.core.greaterEqual(2, 3), false);
+    test.equal(cljs.core.greaterEqual("bar", "foo"), false);
+    test.equal(cljs.core.greaterEqual("foo", "bar"), true);
+    test.equal(cljs.core.greaterEqual("foo", "foo"), true);
 }
 
 exports['Evaluate second'] = function (test) {
