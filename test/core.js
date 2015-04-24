@@ -102,3 +102,16 @@ exports['Evaluate failed is'] = function (test) {
         "Assert error: (= 1 2) is not true"
     );
 };
+
+exports['Evaluate rand without argument'] = function (test) {
+    var result = clojjs.evaluate("(rand)");
+    test.ok(result >= 0);
+    test.ok(result < 1);
+}
+
+exports['Evaluate rand with argument'] = function (test) {
+    var result = clojjs.evaluate("(rand 10)");
+    
+    test.ok(result >= 0);
+    test.ok(result < 10);
+}
