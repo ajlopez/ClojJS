@@ -109,9 +109,10 @@ exports['Evaluate rand without argument'] = function (test) {
     test.ok(result < 1);
 }
 
-exports['Evaluate rand with argument'] = function (test) {
-    var result = clojjs.evaluate("(rand 10)");
+exports['Evaluate rand-int'] = function (test) {
+    var result = clojjs.evaluate("(rand-int 10)");
     
     test.ok(result >= 0);
     test.ok(result < 10);
+    test.equal(result, Math.floor(result));
 }
