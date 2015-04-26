@@ -104,3 +104,15 @@
 (is (= (empty? []) true))
 (is (= (empty? {}) true))
 (is (= (empty? #{}) true))
+
+(is (= (even? 2) true))
+(is (= (even? 1) false))
+(is (= (odd? 2) false))
+(is (= (odd? 3) true))
+(is (= (even? -2) true))
+(is (= (even? -1) false))
+(is (= (odd? -2) false))
+(is (= (odd? -3) true))
+
+(is (= (every? even? '(2 4 6)) true))
+(is (= (every? even? '(1 2 3)) false))

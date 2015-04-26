@@ -2,6 +2,7 @@
 var lists = require('../lib/list');
 var vectors = require('../lib/vector');
 var utils = require('../lib/utils');
+var parsers = require('../lib/parser');
 
 exports['Create list'] = function (test) {
     var list = lists.list(1, null);
@@ -31,4 +32,12 @@ exports['Is list'] = function (test) {
 
 exports['Equals'] = function (test) {
     test.ok(utils.equals(lists.create([1,2,3,4]), lists.create([1,2,3,4])));
+};
+
+exports['Contains symbol'] = function (test) {
+    test.equal(parsers.parser('(1 2 3)').parse().containsSymbol('recur'), false);
+    test.equal(parsers.parser('(recur 2 3)').parse().containsSymbol('recur'), true);
+    test.equal(parsers.parser('(first (recur 2 3))').parse().containsSymbol('recur'), true);
+    test.equal(parsers.parser('(foo (bar 2 3))').parse().containsSymbol('recur'), false);
+    test.equal(parsers.parser('()').parse().containsSymbol('recur'), false);
 };
