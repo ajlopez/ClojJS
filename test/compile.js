@@ -76,6 +76,10 @@ exports['Compile fn'] = function (test) {
     test.equal(clojjs.compile('(fn [x y] (list x y))'), 'function (x, y) { return cljs.core.list.call(null, x, y); }');
 };
 
+exports['Compile fn with recur'] = function (test) {
+    test.equal(clojjs.compile('(fn [x y] (if (!= x 1) (recur (- x 1) (+ y 1)) y))'), 'function (x, y) { while (true) ( var $result = (function (x, y) { return ((x) != (1)) ? (cljs.core.recur.call(null, (x) - (1), (y) + (1))) : (y); })(x, y); return $result; } }');
+};
+
 exports['Compile fn with rest of arguments'] = function (test) {
     test.equal(clojjs.compile('(fn [x y & z] (list x y))'), 'function (x, y) { var z = makeRest(arguments, 2); return cljs.core.list.call(null, x, y); }');
 };
