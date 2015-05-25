@@ -37,6 +37,10 @@ TBD
 
 MIT
 
+## References
+
+- [ClojureScript API Reference](https://github.com/cljsinfo/api-refs/tree/catalog)
+
 ## Contribution
 
 Feel free to [file issues](https://github.com/ajlopez/ClojJS) and submit
