@@ -41,6 +41,7 @@ MIT
 
 - [ClojureScript API Reference](https://github.com/cljsinfo/api-refs/tree/catalog)
 - [The 100 Most Used Clojure Expressions](http://www.lispcast.com/100-most-used-clojure-expressions)
+- [Differences from Clojure]{https://github.com/clojure/clojurescript/wiki/Differences-from-Clojure}
 
 ## Contribution
 
