@@ -47,7 +47,7 @@ MIT
 
 Feel free to [file issues](https://github.com/ajlopez/ClojJS) and submit
 [pull requests](https://github.com/ajlopez/ClojJS/pulls) — contributions are
-welcome<
+welcome.
 
 If you submit a pull request, please be sure to add or update corresponding
 test cases, and ensure that `npm test` continues to pass.
