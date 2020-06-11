@@ -36,14 +36,18 @@ exports['Call vector'] = function (test) {
         function () {
             vector.call(null, 3);
         },
-        "Index out of bounds"
+        {
+            message: "Index out of bounds"
+        }
     );
 
     test.throws(
         function () {
             vector.call(null, -1);
         },
-        "Index out of bounds"
+        {
+            message: "Index out of bounds"
+        }
     );
 };
 
@@ -54,14 +58,18 @@ exports['Index out of bounds'] = function (test) {
         function () {
             vector.nth(3);
         },
-        "Index out of bounds"
+        {
+            message: "Index out of bounds"
+        }
     );
     
     test.throws(
         function () {
             vector.nth(-1);
         },
-        "Index out of bounds"
+        {
+            message: "Index out of bounds"
+        }
     );
 };
 

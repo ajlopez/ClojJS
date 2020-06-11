@@ -24,7 +24,9 @@ exports['Cannot resolve namespace'] = function (test) {
         function() {
             clojjs.requireNamespace('user.core2', {});
         },
-        "Cannot resolve namespace 'user.core2'"
+        {
+            message: "Cannot resolve namespace 'user.core2'"
+        }
     );
 }
 

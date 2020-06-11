@@ -83,9 +83,11 @@ exports['Evaluate ffirst'] = function (test) {
 exports['Evaluate throw'] = function (test) {
     test.throws(
         function () {
-            clojjs.evaluate('(throw (Error. "Throw Error"))');
+            clojjs.evaluate('(throw (Error. "An Error"))');
         },
-        "Throw Error"
+        {
+            message: "An Error"
+        }
     );
 };
 
@@ -99,7 +101,9 @@ exports['Evaluate failed is'] = function (test) {
         function () {
             clojjs.evaluate("(is (= 1 2))");
         },
-        "Assert error: (= 1 2) is not true"
+        {
+            message: "Assert error: (= 1 2) is not true"
+        }
     );
 };
 
@@ -116,3 +120,4 @@ exports['Evaluate rand-int'] = function (test) {
     test.ok(result < 10);
     test.equal(result, Math.floor(result));
 }
+

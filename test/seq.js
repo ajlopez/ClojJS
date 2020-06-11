@@ -34,6 +34,8 @@ exports['seq throw error'] = function (test) {
         function () {
             cljs.core.seq(42);
         },
-        "Don't know how to create sequence from: 42"
+        {
+            message: "Don't know how to create sequence from: 42"
+        }
     );
 }
