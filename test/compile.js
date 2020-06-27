@@ -78,18 +78,18 @@ exports['Compile fn'] = function (test) {
 
 exports['Compile fn with recur'] = function (test) {
     var result = clojjs.compile('(fn [x y] (if (!= x 1) (recur (- x 1) (+ y 1)) y))');
-    var expected = 'function (x, y) { while (true) { var $result = (function (x, y) { return ((x) != (1)) ? (cljs.core.recur.call(null, (x) - (1), (y) + (1))) : (y); })(x, y); if (!recurs.isRecur($result)) return $result; var $items = $result.items(); x = $items[0]; y = $items[1]; }}';
+    var expected = 'function (x, y) { while (true) { const $result = (function (x, y) { return ((x) != (1)) ? (cljs.core.recur.call(null, (x) - (1), (y) + (1))) : (y); })(x, y); if (!recurs.isRecur($result)) return $result; const $items = $result.items(); x = $items[0]; y = $items[1]; }}';
     
     test.equal(result, expected);
 };
 
 exports['Compile fn with rest of arguments'] = function (test) {
-    test.equal(clojjs.compile('(fn [x y & z] (list x y))'), 'function (x, y) { var z = makeRest(arguments, 2); return cljs.core.list.call(null, x, y); }');
+    test.equal(clojjs.compile('(fn [x y & z] (list x y))'), 'function (x, y) { const z = makeRest(arguments, 2); return cljs.core.list.call(null, x, y); }');
 };
 
 exports['Compile fn with multiple arities'] = function (test) {
     test.equal(clojjs.compile('(fn ([x] (+ x 1)) ([x y] (+ x y)))'), 'function () { if (arguments.length == 1) return (function (x) { return (x) + (1); }).apply(null, arguments); if (arguments.length == 2) return (function (x, y) { return (x) + (y); }).apply(null, arguments); }');
-    test.equal(clojjs.compile('(fn ([x] (+ x 1)) ([x y & z] (+ x y)))'), 'function () { if (arguments.length == 1) return (function (x) { return (x) + (1); }).apply(null, arguments); if (arguments.length >= 2) return (function (x, y) { var z = makeRest(arguments, 2); return (x) + (y); }).apply(null, arguments); }');
+    test.equal(clojjs.compile('(fn ([x] (+ x 1)) ([x y & z] (+ x y)))'), 'function () { if (arguments.length == 1) return (function (x) { return (x) + (1); }).apply(null, arguments); if (arguments.length >= 2) return (function (x, y) { const z = makeRest(arguments, 2); return (x) + (y); }).apply(null, arguments); }');
 };
 
 exports['Compile dot get property'] = function (test) {
