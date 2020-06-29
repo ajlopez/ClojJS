@@ -1,7 +1,7 @@
 
-var clojjs = require('..');
-var lists = require('../lib/list');
-var vectors = require('../lib/vector');
+const clojjs = require('..');
+const lists = require('../lib/list');
+const vectors = require('../lib/vector');
 
 exports['seq nil'] = function (test) {
     test.equal(cljs.core.seq(null), null);
@@ -12,12 +12,12 @@ exports['seq empty list'] = function (test) {
 }
 
 exports['seq list'] = function (test) {
-    var list = lists.create([1, 2, 3]);
+    const list = lists.create([1, 2, 3]);
     test.strictEqual(cljs.core.seq(list), list);
 }
 
 exports['seq vector'] = function (test) {
-    var vector = vectors.create([1, 2, 3]);
+    const vector = vectors.create([1, 2, 3]);
     test.equal(cljs.core.seq(vector).asString(), "(1 2 3)");
 }
 
