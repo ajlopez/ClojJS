@@ -1,9 +1,9 @@
 
-var recurs = require('../lib/recur');
-var lists = require('../lib/list');
+const recurs = require('../lib/recur');
+const lists = require('../lib/list');
 
 exports['Create recur'] = function (test) {
-    var result = recurs.create([1, 2, 3]);
+    const result = recurs.create([1, 2, 3]);
     
     test.ok(result);
     test.equal(result.length(), 3);
@@ -15,7 +15,7 @@ exports['Create recur'] = function (test) {
 }
 
 exports['Is recur'] = function (test) {
-    var result = recurs.create([1, 2, 3]);
+    const result = recurs.create([1, 2, 3]);
     
     test.ok(result);
     test.ok(recurs.isRecur(result));
