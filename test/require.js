@@ -1,5 +1,5 @@
 
-var clojjs = require('..');
+const clojjs = require('..');
 
 exports['Require namespace'] = function (test) {
     if (typeof user != 'undefined' && typeof user.core != 'undefined')
