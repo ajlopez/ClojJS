@@ -1,6 +1,6 @@
 
-var clojjs = require('..');
-var path = require('path');
+const clojjs = require('..');
+const path = require('path');
 
 exports['Load simple project'] = function (test) {
     if (typeof myapp != 'undefined')
@@ -25,3 +25,4 @@ exports['Execute require and load simple project'] = function (test) {
     test.ok(myapp.core.answer);
     test.equal(myapp.core.answer, 42);
 }
+
