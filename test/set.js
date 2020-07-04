@@ -1,9 +1,9 @@
 
-var sets = require('../lib/set');
-var keywords = require('../lib/keyword');
+const sets = require('../lib/set');
+const keywords = require('../lib/keyword');
 
 exports['Create set'] = function (test) {
-    var set = sets.create(["one", "two", "three"]);
+    const set = sets.create(["one", "two", "three"]);
     
     test.ok(set);
     test.ok(set.has("one"));
@@ -12,7 +12,7 @@ exports['Create set'] = function (test) {
 };
 
 exports['Create set with keywords'] = function (test) {
-    var set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
+    const set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
     
     test.ok(set);
     test.ok(set.has(keywords.keyword("one")));
@@ -21,15 +21,15 @@ exports['Create set with keywords'] = function (test) {
 };
 
 exports['Set as string'] = function (test) {
-    var set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
+    const set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
     
     test.ok(set);
     test.equal(set.asString(), "#{:one :two :three}");
 };
 
 exports['Set as object'] = function (test) {
-    var set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
-    var result = set.asObject();
+    const set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
+    const result = set.asObject();
     
     test.ok(result);
     test.equal(typeof result, 'object');
@@ -39,8 +39,8 @@ exports['Set as object'] = function (test) {
 };
 
 exports['Set as array'] = function (test) {
-    var set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
-    var result = set.asArray();
+    const set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
+    const result = set.asArray();
     
     test.ok(result);
     test.ok(Array.isArray(result));
@@ -54,8 +54,8 @@ exports['Set as array'] = function (test) {
 };
 
 exports['Set as nested array'] = function (test) {
-    var set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three"), sets.create([keywords.keyword("four"), keywords.keyword("five")])]);
-    var result = set.asArray();
+    const set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three"), sets.create([keywords.keyword("four"), keywords.keyword("five")])]);
+    const result = set.asArray();
     
     test.ok(result);
     test.ok(Array.isArray(result));
@@ -75,9 +75,9 @@ exports['Set as nested array'] = function (test) {
 };
 
 exports['Create and modify set'] = function (test) {
-    var set = sets.create(["one", "two", "three"]);
+    const set = sets.create(["one", "two", "three"]);
     
-    var set2 = set.add("four");
+    const set2 = set.add("four");
     
     test.ok(set);
     test.ok(set.has("one"));
@@ -93,17 +93,17 @@ exports['Create and modify set'] = function (test) {
 };
 
 exports['Add existing key'] = function (test) {
-    var set = sets.create(["one", "two", "three"]);
+    const set = sets.create(["one", "two", "three"]);
     
-    var set2 = set.add("two");
+    const set2 = set.add("two");
     
     test.strictEqual(set2, set);
 };
 
 exports['Remove key'] = function (test) {
-    var set = sets.create(["one", "two", "three"]);
+    const set = sets.create(["one", "two", "three"]);
     
-    var set2 = set.remove("two");
+    const set2 = set.remove("two");
     
     test.ok(set);
     test.ok(set.has("one"));
@@ -119,9 +119,9 @@ exports['Remove key'] = function (test) {
 };
 
 exports['Remove keyword key'] = function (test) {
-    var set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
+    const set = sets.create([keywords.keyword("one"), keywords.keyword("two"), keywords.keyword("three")]);
     
-    var set2 = set.remove(keywords.keyword("two"));
+    const set2 = set.remove(keywords.keyword("two"));
     
     test.ok(set);
     test.ok(set.has(keywords.keyword("one")));
@@ -137,18 +137,18 @@ exports['Remove keyword key'] = function (test) {
 };
 
 exports['Remove non existing key'] = function (test) {
-    var set = sets.create(["one", "two", "three"]);
+    const set = sets.create(["one", "two", "three"]);
     
-    var set2 = set.remove("four");
+    const set2 = set.remove("four");
     
     test.strictEqual(set2, set);
 };
 
 exports['Equals on same keys/values'] = function (test) {
-    var set = sets.create([ 1, 2, 3 ]);
-    var set2 = sets.create([ 1, 3, 2 ]);
-    var set3 = sets.create([ 1, 2, 4 ]);
-    var set4 = sets.create([ 1, 4 ]);
+    const set = sets.create([ 1, 2, 3 ]);
+    const set2 = sets.create([ 1, 3, 2 ]);
+    const set3 = sets.create([ 1, 2, 4 ]);
+    const set4 = sets.create([ 1, 4 ]);
     
     test.ok(set.equals(set2));
     test.ok(set2.equals(set));
