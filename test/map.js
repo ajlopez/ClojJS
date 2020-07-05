@@ -1,9 +1,9 @@
 
-var maps = require('../lib/map');
-var keywords = require('../lib/keyword');
+const maps = require('../lib/map');
+const keywords = require('../lib/keyword');
 
 exports['Create map'] = function (test) {
-    var map = maps.create(["one", 1, "two", 2, "three", 3]);
+    const map = maps.create(["one", 1, "two", 2, "three", 3]);
     
     test.ok(map);
     test.equal(map.get("one"), 1);
@@ -12,7 +12,7 @@ exports['Create map'] = function (test) {
 };
 
 exports['Create map with keywords'] = function (test) {
-    var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    const map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
     
     test.ok(map);
     test.equal(map.get(keywords.keyword("one")), 1);
@@ -21,7 +21,7 @@ exports['Create map with keywords'] = function (test) {
 };
 
 exports['Map has key'] = function (test) {
-    var map = maps.create([keywords.keyword("one"), null, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    const map = maps.create([keywords.keyword("one"), null, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
     
     test.ok(map);
 
@@ -37,15 +37,15 @@ exports['Map has key'] = function (test) {
 };
 
 exports['Map as string'] = function (test) {
-    var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    const map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
     
     test.ok(map);
     test.equal(map.asString(), "{:one 1 :two 2 :three 3}");
 };
 
 exports['Map as object'] = function (test) {
-    var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
-    var result = map.asObject();
+    const map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    const result = map.asObject();
     
     test.ok(result);
     test.equal(typeof result, 'object');
@@ -55,8 +55,8 @@ exports['Map as object'] = function (test) {
 };
 
 exports['Map as nested object'] = function (test) {
-    var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), maps.create([keywords.keyword("four"), 4, keywords.keyword("five"), 5])]);
-    var result = map.asObject();
+    const map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), maps.create([keywords.keyword("four"), 4, keywords.keyword("five"), 5])]);
+    const result = map.asObject();
     
     test.ok(result);
     test.equal(typeof result, 'object');
@@ -68,9 +68,9 @@ exports['Map as nested object'] = function (test) {
 };
 
 exports['Create and modify map'] = function (test) {
-    var map = maps.create(["one", 1, "two", 2, "three", 3]);
+    const map = maps.create(["one", 1, "two", 2, "three", 3]);
     
-    var map2 = map.set("three", 4);
+    const map2 = map.set("three", 4);
     
     test.ok(map);
     test.equal(map.get("one"), 1);
@@ -84,9 +84,9 @@ exports['Create and modify map'] = function (test) {
 };
 
 exports['Assoc'] = function (test) {
-    var map = maps.create(["one", 1, "two", 2, "three", 3]);
+    const map = maps.create(["one", 1, "two", 2, "three", 3]);
     
-    var map2 = map.assoc(["four", 4, "three", 0, "five", 5]);
+    const map2 = map.assoc(["four", 4, "three", 0, "five", 5]);
     
     test.ok(map);
     test.equal(map.get("one"), 1);
@@ -102,9 +102,9 @@ exports['Assoc'] = function (test) {
 };
 
 exports['Dissoc'] = function (test) {
-    var map = maps.create(["one", 1, "two", 2, "three", 3, "four", 4]);
+    const map = maps.create(["one", 1, "two", 2, "three", 3, "four", 4]);
     
-    var map2 = map.dissoc(["four", "two"]);
+    const map2 = map.dissoc(["four", "two"]);
     
     test.ok(map);
     test.equal(map.get("one"), 1);
@@ -120,19 +120,19 @@ exports['Dissoc'] = function (test) {
 };
 
 exports['Dissoc non existing keys'] = function (test) {
-    var map = maps.create(["one", 1, "two", 2, "three", 3, "four", 4]);
+    const map = maps.create(["one", 1, "two", 2, "three", 3, "four", 4]);
     
-    var map2 = map.dissoc(["five", "ten"]);
+    const map2 = map.dissoc(["five", "ten"]);
     
     test.ok(map);
     test.strictEqual(map2, map);
 };
 
 exports['Equals on same keys/values'] = function (test) {
-    var map = maps.create(["one", 1, "two", 2, "three", 3]);
-    var map2 = maps.create(["one", 1, "three", 3, "two", 2]);
-    var map3 = maps.create(["one", 1, "two", 2, "three", 4]);
-    var map4 = maps.create(["one", 1, "three", 4]);
+    const map = maps.create(["one", 1, "two", 2, "three", 3]);
+    const map2 = maps.create(["one", 1, "three", 3, "two", 2]);
+    const map3 = maps.create(["one", 1, "two", 2, "three", 4]);
+    const map4 = maps.create(["one", 1, "three", 4]);
     
     test.ok(map.equals(map2));
     test.ok(map2.equals(map));
@@ -149,8 +149,8 @@ exports['Equals on same keys/values'] = function (test) {
 };
 
 exports['Remove key'] = function (test) {
-    var map = maps.create(["one", 1, "two", 2, "three", 3]);
-    var map2 = map.remove("three");
+    const map = maps.create(["one", 1, "two", 2, "three", 3]);
+    const map2 = map.remove("three");
     
     test.equal(map.get("one"), 1);
     test.equal(map.get("two"), 2);
@@ -163,8 +163,8 @@ exports['Remove key'] = function (test) {
 };
 
 exports['Remove keyword'] = function (test) {
-    var map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
-    var map2 = map.remove(keywords.keyword("three"));
+    const map = maps.create([keywords.keyword("one"), 1, keywords.keyword("two"), 2, keywords.keyword("three"), 3]);
+    const map2 = map.remove(keywords.keyword("three"));
     
     test.equal(map.get(keywords.keyword("one")), 1);
     test.equal(map.get(keywords.keyword("two")), 2);
@@ -175,3 +175,4 @@ exports['Remove keyword'] = function (test) {
     test.equal(map2.get(keywords.keyword("three")), null);
     test.ok(!map2.has(keywords.keyword("three")));
 };
+
