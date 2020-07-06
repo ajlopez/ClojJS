@@ -1,8 +1,8 @@
 
-var vectors = require('../lib/vector');
+const vectors = require('../lib/vector');
 
 exports['Create vector'] = function (test) {
-    var vector = vectors.create([1, 2, 3]);
+    const vector = vectors.create([1, 2, 3]);
     
     test.ok(vector);
     test.equal(vector.length(), 3);
@@ -14,7 +14,7 @@ exports['Create vector'] = function (test) {
 };
 
 exports['Create vector with nil'] = function (test) {
-    var vector = vectors.create([null]);
+    const vector = vectors.create([null]);
     
     test.ok(vector);
     test.equal(vector.length(), 1);
@@ -24,7 +24,7 @@ exports['Create vector with nil'] = function (test) {
 };
 
 exports['Call vector'] = function (test) {
-    var vector = vectors.create([1, 2, 3]);
+    const vector = vectors.create([1, 2, 3]);
     
     test.ok(vector);
     test.equal(vector.length(), 3);
@@ -52,7 +52,7 @@ exports['Call vector'] = function (test) {
 };
 
 exports['Index out of bounds'] = function (test) {
-    var vector = vectors.create([1, 2, 3]);
+    const vector = vectors.create([1, 2, 3]);
     
     test.throws(
         function () {
@@ -74,7 +74,7 @@ exports['Index out of bounds'] = function (test) {
 };
 
 exports['Vector has key'] = function (test) {
-    var vector = vectors.create([1, 2, 3]);
+    const vector = vectors.create([1, 2, 3]);
     
     test.ok(vector);
     test.equal(vector.length(), 3);
@@ -104,8 +104,8 @@ exports['Is vector'] = function (test) {
 };
 
 exports['Assoc'] = function (test) {
-    var vector = vectors.create([1, 2, 3]);
-    var vector2 = vector.assoc([1, 3, 3, 4]);
+    const vector = vectors.create([1, 2, 3]);
+    const vector2 = vector.assoc([1, 3, 3, 4]);
     
     test.ok(!vector.equals(vector2));
     test.ok(!vector2.equals(vector));
