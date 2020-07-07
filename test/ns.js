@@ -1,6 +1,6 @@
 
-var ns = require('../lib/ns');
-var path = require('path');
+const ns = require('../lib/ns');
+const path = require('path');
 
 exports['Namespace is valid'] = function (test) {
     test.equal(ns.isValid('user'), true);
