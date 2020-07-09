@@ -1,6 +1,6 @@
 
-var clojjs = require('..');
-var path = require('path');
+const clojjs = require('..');
+const path = require('path');
 
 exports['Execute def'] = function (test) {
     if (cljs && cljs.core && cljs.core.one)
@@ -14,6 +14,7 @@ exports['Execute def'] = function (test) {
 exports['Execute two defs'] = function (test) {
     if (cljs && cljs.core && cljs.core.one)
         delete cljs.core.one;
+    
     if (cljs && cljs.core && cljs.core.two)
         delete cljs.core.two;
         
@@ -25,8 +26,10 @@ exports['Execute two defs'] = function (test) {
 };
 
 exports['Execute ns'] = function (test) {
-    var context = { };
+    const context = { };
+    
     clojjs.execute('(ns mypackage1.mycore1)', context);
+    
     test.ok(mypackage1);
     test.equal(typeof mypackage1, 'object');
     test.ok(mypackage1.mycore1);
@@ -37,8 +40,10 @@ exports['Execute ns'] = function (test) {
 };
 
 exports['Execute def in my ns'] = function (test) {
-    var context = { };
+    const context = { };
+    
     clojjs.execute('(ns mypackage1.mycore2) (def one 1)', context);
+    
     test.ok(mypackage1);
     test.equal(typeof mypackage1, 'object');
     test.ok(mypackage1.mycore2);
@@ -48,8 +53,10 @@ exports['Execute def in my ns'] = function (test) {
 };
 
 exports['Define and Expand macro'] = function (test) {
-    var context = { };
+    const context = { };
+    
     clojjs.execute('(def myapply (fn [x] (cons x (cons 1 (cons 2 nil))))) (set! (. myapply macro) true) (def two (myapply list))', context);
+    
     test.ok(cljs.core.myapply);
     test.ok(cljs.core.two);
     test.equal(cljs.core.two.asString(), '(1 2)');
@@ -68,7 +75,8 @@ exports['Execute file'] = function (test) {
 exports['Execute load-file'] = function (test) {
     delete global.files;
     
-    var filename = path.join(__dirname, 'files', 'loadedfile.cljs');
+    const filename = path.join(__dirname, 'files', 'loadedfile.cljs');
+    
     clojjs.execute('(load-file "' + filename + '")', {});
     
     test.ok(files);
@@ -79,7 +87,8 @@ exports['Execute load-file'] = function (test) {
 exports['Execute load in file'] = function (test) {
     delete global.files;
     
-    var filename = path.join(__dirname, 'files', 'loader.cljs');
+    const filename = path.join(__dirname, 'files', 'loader.cljs');
+    
     clojjs.execute('(load-file "' + filename + '")', {});
     
     test.ok(files);
@@ -110,3 +119,4 @@ exports['Execute file with require'] = function (test) {
     test.ok(sublib.core.one);
     test.equal(sublib.core.one, 1);
 };
+
