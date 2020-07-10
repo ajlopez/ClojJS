@@ -1,23 +1,23 @@
 
-var clojjs = require('..');
-var maps = require('../lib/map');
-var sets = require('../lib/set');
-var keywords = require('../lib/keyword');
+const clojjs = require('..');
+const maps = require('../lib/map');
+const sets = require('../lib/set');
+const keywords = require('../lib/keyword');
 
 exports['Evaluate integer'] = function (test) {
-    var result = clojjs.evaluate('42');
+    const result = clojjs.evaluate('42');
 
     test.strictEqual(result, 42);
 }
 
 exports['Evaluate string'] = function (test) {
-    var result = clojjs.evaluate('"foo"');
+    const result = clojjs.evaluate('"foo"');
 
     test.strictEqual(result, "foo");
 }
 
 exports['Evaluate list'] = function (test) {
-    var result = clojjs.evaluate('(list 1 2 3)');
+    const result = clojjs.evaluate('(list 1 2 3)');
 
     test.ok(result);
     test.equal(result.asString(), "(1 2 3)");
@@ -84,7 +84,7 @@ exports['Evaluate multi arity fns'] = function (test) {
 }
 
 exports['Evaluate map to object'] = function (test) {
-    var result = clojjs.evaluate('(to-object { :one 1 :two 2 :three 3 })');
+    const result = clojjs.evaluate('(to-object { :one 1 :two 2 :three 3 })');
     
     test.ok(result);
     test.equal(typeof result, 'object');
@@ -94,7 +94,7 @@ exports['Evaluate map to object'] = function (test) {
 }
 
 exports['Evaluate map'] = function (test) {
-    var result = clojjs.evaluate('{ :one 1 :two 2 :three 3 }');
+    const result = clojjs.evaluate('{ :one 1 :two 2 :three 3 }');
     
     test.ok(result);
     test.ok(maps.isMap(result));
@@ -104,7 +104,7 @@ exports['Evaluate map'] = function (test) {
 }
 
 exports['Evaluate set'] = function (test) {
-    var result = clojjs.evaluate('#{ 1 2 3 }');
+    const result = clojjs.evaluate('#{ 1 2 3 }');
     
     test.ok(result);
     test.ok(sets.isSet(result));
@@ -128,3 +128,4 @@ exports['Evaluate str'] = function (test) {
 exports['Evaluate vector nil'] = function (test) {
     test.equal(clojjs.evaluate('(vector nil)').asString(), '[nil]');
 }
+
