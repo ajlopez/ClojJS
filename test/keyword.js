@@ -1,8 +1,8 @@
 
-var keywords = require('../lib/keyword');
+const keywords = require('../lib/keyword');
 
 exports['Create keyword'] = function (test) {
-    var keyword = keywords.keyword('foo');
+    const keyword = keywords.keyword('foo');
     
     test.ok(keyword);
     test.equal(keyword.name(), 'foo');
@@ -10,7 +10,7 @@ exports['Create keyword'] = function (test) {
 };
 
 exports['Is keyword'] = function (test) {
-    var keyword = keywords.keyword('foo');
+    const keyword = keywords.keyword('foo');
     
     test.ok(keywords.isKeyword(keyword));
     test.ok(!keywords.isKeyword(null));
@@ -21,9 +21,9 @@ exports['Is keyword'] = function (test) {
 };
 
 exports['Equals'] = function (test) {
-    var keyword = keywords.keyword('foo');
-    var keyword2 = keywords.keyword('foo');
-    var keyword3 = keywords.keyword('bar');
+    const keyword = keywords.keyword('foo');
+    const keyword2 = keywords.keyword('foo');
+    const keyword3 = keywords.keyword('bar');
     
     test.ok(keyword.equals(keyword2));
     test.ok(keyword2.equals(keyword));
@@ -35,3 +35,4 @@ exports['Equals'] = function (test) {
     test.ok(!keyword.equals("foo"));
     test.ok(!keyword.equals(":foo"));
 };
+
