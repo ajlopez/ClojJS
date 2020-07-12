@@ -1,11 +1,11 @@
 
-var lists = require('../lib/list');
-var vectors = require('../lib/vector');
-var utils = require('../lib/utils');
-var parsers = require('../lib/parser');
+const lists = require('../lib/list');
+const vectors = require('../lib/vector');
+const utils = require('../lib/utils');
+const parsers = require('../lib/parser');
 
 exports['Create list'] = function (test) {
-    var list = lists.list(1, null);
+    const list = lists.list(1, null);
     
     test.ok(list);
     test.strictEqual(list.first(), 1);
