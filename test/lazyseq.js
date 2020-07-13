@@ -1,15 +1,15 @@
 
-var lazyseqs = require('../lib/lazyseq');
-var lists = require('../lib/list');
+const lazyseqs = require('../lib/lazyseq');
+const lists = require('../lib/list');
 
 exports['create and consume lazy seq'] = function (test) {
-    var n = 1;
+    let n = 1;
     
-    var fn = function () {
+    const fn = function () {
         return lists.list(n++, lazyseqs.create(fn));
     }
     
-    var lseq = lazyseqs.create(fn);
+    const lseq = lazyseqs.create(fn);
     
     test.ok(lseq);
     
