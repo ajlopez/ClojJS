@@ -1,18 +1,18 @@
 
-var lexers = require('../lib/lexer');
-var TokenType = lexers.TokenType;
+const lexers = require('../lib/lexer');
+const TokenType = lexers.TokenType;
 
 exports['Create lexer'] = function (test) {
-    var lexer = lexers.lexer('foo');
+    const lexer = lexers.lexer('foo');
     
     test.ok(lexer);
     test.equal(typeof lexer, 'object');
 };
 
 exports['Get name'] = function (test) {
-    var lexer = lexers.lexer('foo');
+    const lexer = lexers.lexer('foo');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
@@ -22,9 +22,9 @@ exports['Get name'] = function (test) {
 };
 
 exports['Get dollar name'] = function (test) {
-    var lexer = lexers.lexer('$foo');
+    const lexer = lexers.lexer('$foo');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
@@ -34,9 +34,9 @@ exports['Get dollar name'] = function (test) {
 };
 
 exports['Get name skipping line comment'] = function (test) {
-    var lexer = lexers.lexer('; this is a comment\nfoo');
+    const lexer = lexers.lexer('; this is a comment\nfoo');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
@@ -46,9 +46,9 @@ exports['Get name skipping line comment'] = function (test) {
 };
 
 exports['Get name skipping line comment ending in carriage return'] = function (test) {
-    var lexer = lexers.lexer('; this is a comment\rfoo');
+    const lexer = lexers.lexer('; this is a comment\rfoo');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
@@ -58,9 +58,9 @@ exports['Get name skipping line comment ending in carriage return'] = function (
 };
 
 exports['Get name with qualified namespace'] = function (test) {
-    var lexer = lexers.lexer('cljs.core/foo');
+    const lexer = lexers.lexer('cljs.core/foo');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
@@ -70,9 +70,9 @@ exports['Get name with qualified namespace'] = function (test) {
 };
 
 exports['Get name with spaces'] = function (test) {
-    var lexer = lexers.lexer('  foo   ');
+    const lexer = lexers.lexer('  foo   ');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
@@ -82,9 +82,9 @@ exports['Get name with spaces'] = function (test) {
 };
 
 exports['Get name skipping commas'] = function (test) {
-    var lexer = lexers.lexer('  ,,foo,,, ');
+    const lexer = lexers.lexer('  ,,foo,,, ');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
@@ -94,27 +94,27 @@ exports['Get name skipping commas'] = function (test) {
 };
 
 exports['Get names'] = function (test) {
-    var lexer = lexers.lexer('foo bar');
+    const lexer = lexers.lexer('foo bar');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
     test.equal(token.value, 'foo');
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Name);
-    test.equal(token.value, 'bar');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Name);
+    test.equal(token2.value, 'bar');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get string'] = function (test) {
-    var lexer = lexers.lexer('"foo"');
+    const lexer = lexers.lexer('"foo"');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.String);
@@ -124,9 +124,9 @@ exports['Get string'] = function (test) {
 };
 
 exports['Get integer'] = function (test) {
-    var lexer = lexers.lexer('42');
+    const lexer = lexers.lexer('42');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Integer);
@@ -136,9 +136,9 @@ exports['Get integer'] = function (test) {
 };
 
 exports['Get negative integer'] = function (test) {
-    var lexer = lexers.lexer('-123');
+    const lexer = lexers.lexer('-123');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Integer);
@@ -148,187 +148,187 @@ exports['Get negative integer'] = function (test) {
 };
 
 exports['Get parenthesis as delimiter'] = function (test) {
-    var lexer = lexers.lexer('()');
+    const lexer = lexers.lexer('()');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Delimiter);
     test.equal(token.value, '(');
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Delimiter);
-    test.equal(token.value, ')');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Delimiter);
+    test.equal(token2.value, ')');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get square brackets as delimiters'] = function (test) {
-    var lexer = lexers.lexer('[]');
+    const lexer = lexers.lexer('[]');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Delimiter);
     test.equal(token.value, '[');
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Delimiter);
-    test.equal(token.value, ']');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Delimiter);
+    test.equal(token2.value, ']');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get handlebars as delimiters'] = function (test) {
-    var lexer = lexers.lexer('{}');
+    const lexer = lexers.lexer('{}');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Delimiter);
     test.equal(token.value, '{');
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Delimiter);
-    test.equal(token.value, '}');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Delimiter);
+    test.equal(token2.value, '}');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get numeral and handlebars as delimiters'] = function (test) {
-    var lexer = lexers.lexer('#{}');
+    const lexer = lexers.lexer('#{}');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Delimiter);
     test.equal(token.value, '#{');
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Delimiter);
-    test.equal(token.value, '}');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Delimiter);
+    test.equal(token2.value, '}');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get delimiter, name, delimiter'] = function (test) {
-    var lexer = lexers.lexer('[x]');
+    const lexer = lexers.lexer('[x]');
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Delimiter);
     test.equal(token.value, '[');
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Name);
-    test.equal(token.value, 'x');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Name);
+    test.equal(token2.value, 'x');
     
-    var token = lexer.nextToken();
+    const token3 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Delimiter);
-    test.equal(token.value, ']');
+    test.ok(token3);
+    test.equal(token3.type, TokenType.Delimiter);
+    test.equal(token3.value, ']');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get quote character and name'] = function (test) {
-    var lexer = lexers.lexer("'x");
+    const lexer = lexers.lexer("'x");
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
     test.equal(token.value, "'");
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Name);
-    test.equal(token.value, 'x');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Name);
+    test.equal(token2.value, 'x');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get ampersand character and name'] = function (test) {
-    var lexer = lexers.lexer("&x");
+    const lexer = lexers.lexer("&x");
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
     test.equal(token.value, "&");
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Name);
-    test.equal(token.value, 'x');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Name);
+    test.equal(token2.value, 'x');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get backquote character and name'] = function (test) {
-    var lexer = lexers.lexer("`x");
+    const lexer = lexers.lexer("`x");
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
     test.equal(token.value, "`");
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Name);
-    test.equal(token.value, 'x');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Name);
+    test.equal(token2.value, 'x');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get unquote character and name'] = function (test) {
-    var lexer = lexers.lexer("~x");
+    const lexer = lexers.lexer("~x");
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
     test.equal(token.value, "~");
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Name);
-    test.equal(token.value, 'x');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Name);
+    test.equal(token2.value, 'x');
     
     test.strictEqual(lexer.nextToken(), null);
 };
 
 exports['Get unquote splicing and name'] = function (test) {
-    var lexer = lexers.lexer("~@x");
+    const lexer = lexers.lexer("~@x");
     
-    var token = lexer.nextToken();
+    const token = lexer.nextToken();
     
     test.ok(token);
     test.equal(token.type, TokenType.Name);
     test.equal(token.value, "~@");
     
-    var token = lexer.nextToken();
+    const token2 = lexer.nextToken();
     
-    test.ok(token);
-    test.equal(token.type, TokenType.Name);
-    test.equal(token.value, 'x');
+    test.ok(token2);
+    test.equal(token2.type, TokenType.Name);
+    test.equal(token2.value, 'x');
     
     test.strictEqual(lexer.nextToken(), null);
 };
