@@ -1,16 +1,16 @@
 
-var parsers = require('../lib/parser');
-var symbols = require('../lib/symbol');
-var keywords = require('../lib/keyword');
-var lists = require('../lib/list');
-var vectors = require('../lib/vector');
-var maps = require('../lib/map');
-var sets = require('../lib/set');
+const parsers = require('../lib/parser');
+const symbols = require('../lib/symbol');
+const keywords = require('../lib/keyword');
+const lists = require('../lib/list');
+const vectors = require('../lib/vector');
+const maps = require('../lib/map');
+const sets = require('../lib/set');
 
 exports['Parse empty text'] = function (test) {
-    var parser = parsers.parser('');
+    const parser = parsers.parser('');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.strictEqual(result, null);
 
@@ -18,15 +18,15 @@ exports['Parse empty text'] = function (test) {
 }
 
 exports['Has token on empty text'] = function (test) {
-    var parser = parsers.parser('');
+    const parser = parsers.parser('');
     
     test.equal(parser.hasToken(), false);
 }
 
 exports['Parse integer'] = function (test) {
-    var parser = parsers.parser('42');
+    const parser = parsers.parser('42');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.strictEqual(result, 42);
@@ -35,15 +35,15 @@ exports['Parse integer'] = function (test) {
 }
 
 exports['Has token on integer'] = function (test) {
-    var parser = parsers.parser('42');
+    const parser = parsers.parser('42');
     
     test.equal(parser.hasToken(), true);
 }
 
 exports['Parse string'] = function (test) {
-    var parser = parsers.parser('"foo"');
+    const parser = parsers.parser('"foo"');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.strictEqual(result, "foo");
@@ -52,9 +52,9 @@ exports['Parse string'] = function (test) {
 }
 
 exports['Parse nil'] = function (test) {
-    var parser = parsers.parser('nil');
+    const parser = parsers.parser('nil');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.strictEqual(result, null);
 
@@ -62,23 +62,23 @@ exports['Parse nil'] = function (test) {
 }
 
 exports['Parse booleans'] = function (test) {
-    var parser = parsers.parser('false true');
+    const parser = parsers.parser('false true');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.strictEqual(result, false);
     
-    var result = parser.parse();
+    const result2 = parser.parse();
     
-    test.strictEqual(result, true);
+    test.strictEqual(result2, true);
 
     test.strictEqual(parser.parse(), null);
 }
 
 exports['Parse symbol'] = function (test) {
-    var parser = parsers.parser('first');
+    const parser = parsers.parser('first');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(symbols.isSymbol(result));
@@ -88,9 +88,9 @@ exports['Parse symbol'] = function (test) {
 }
 
 exports['Parse keyword'] = function (test) {
-    var parser = parsers.parser(':name');
+    const parser = parsers.parser(':name');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(keywords.isKeyword(result));
@@ -101,9 +101,9 @@ exports['Parse keyword'] = function (test) {
 }
 
 exports['Parse list'] = function (test) {
-    var parser = parsers.parser('(1 2 (3 4))');
+    const parser = parsers.parser('(1 2 (3 4))');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(lists.isList(result));
@@ -113,9 +113,9 @@ exports['Parse list'] = function (test) {
 }
 
 exports['Parse list with vector'] = function (test) {
-    var parser = parsers.parser('(1 2 [3 4] 5)');
+    const parser = parsers.parser('(1 2 [3 4] 5)');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(lists.isList(result));
@@ -125,9 +125,9 @@ exports['Parse list with vector'] = function (test) {
 }
 
 exports['Parse list with fn'] = function (test) {
-    var parser = parsers.parser('(fn [x y] (list x y))');
+    const parser = parsers.parser('(fn [x y] (list x y))');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(lists.isList(result));
@@ -137,9 +137,9 @@ exports['Parse list with fn'] = function (test) {
 }
 
 exports['Parse vector'] = function (test) {
-    var parser = parsers.parser('[1 2 3 4]');
+    const parser = parsers.parser('[1 2 3 4]');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(vectors.isVector(result));
@@ -149,9 +149,9 @@ exports['Parse vector'] = function (test) {
 }
 
 exports['Parse vector with list'] = function (test) {
-    var parser = parsers.parser('[1 (list 2 3) 4]');
+    const parser = parsers.parser('[1 (list 2 3) 4]');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(vectors.isVector(result));
@@ -161,9 +161,9 @@ exports['Parse vector with list'] = function (test) {
 }
 
 exports['Parse vector with vector'] = function (test) {
-    var parser = parsers.parser('[1 [2 3] 4]');
+    const parser = parsers.parser('[1 [2 3] 4]');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(vectors.isVector(result));
@@ -173,9 +173,9 @@ exports['Parse vector with vector'] = function (test) {
 }
 
 exports['Parse map'] = function (test) {
-    var parser = parsers.parser('{ "one" 1 "two" 2 }');
+    const parser = parsers.parser('{ "one" 1 "two" 2 }');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(maps.isMap(result));
@@ -187,27 +187,27 @@ exports['Parse map'] = function (test) {
 }
 
 exports['Parse list with map'] = function (test) {
-    var parser = parsers.parser('(to-object { "one" 1 "two" 2 })');
+    const parser = parsers.parser('(to-object { "one" 1 "two" 2 })');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(lists.isList(result));
     
-    result = result.next().first();
+    const result2 = result.next().first();
     
-    test.ok(maps.isMap(result));
-    test.equal(result.get("one"), 1);
-    test.equal(result.get("two"), 2);
-    test.equal(result.get("three"), null);
+    test.ok(maps.isMap(result2));
+    test.equal(result2.get("one"), 1);
+    test.equal(result2.get("two"), 2);
+    test.equal(result2.get("three"), null);
     
     test.strictEqual(parser.parse(), null);
 }
 
 exports['Parse map with keywords'] = function (test) {
-    var parser = parsers.parser('{ :one 1 :two 2 }');
+    const parser = parsers.parser('{ :one 1 :two 2 }');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(maps.isMap(result));
@@ -219,9 +219,9 @@ exports['Parse map with keywords'] = function (test) {
 }
 
 exports['Parse set'] = function (test) {
-    var parser = parsers.parser('#{ "one" "two" }');
+    const parser = parsers.parser('#{ "one" "two" }');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(sets.isSet(result));
@@ -233,9 +233,9 @@ exports['Parse set'] = function (test) {
 }
 
 exports['Parse with integers'] = function (test) {
-    var parser = parsers.parser('#{ 1 2 3 }');
+    const parser = parsers.parser('#{ 1 2 3 }');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(sets.isSet(result));
@@ -250,27 +250,27 @@ exports['Parse with integers'] = function (test) {
 }
 
 exports['Parse list with set'] = function (test) {
-    var parser = parsers.parser('(to-array #{ "one" "two" })');
+    const parser = parsers.parser('(to-array #{ "one" "two" })');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(lists.isList(result));
     
-    result = result.next().first();
+    const result2 = result.next().first();
     
-    test.ok(sets.isSet(result));
-    test.ok(result.has("one"));
-    test.ok(result.has("two"));
-    test.ok(!result.has("three"));
+    test.ok(sets.isSet(result2));
+    test.ok(result2.has("one"));
+    test.ok(result2.has("two"));
+    test.ok(!result2.has("three"));
     
     test.strictEqual(parser.parse(), null);
 }
 
 exports['Parse set with keywords'] = function (test) {
-    var parser = parsers.parser('#{ :one :two }');
+    const parser = parsers.parser('#{ :one :two }');
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.ok(sets.isSet(result));
@@ -282,9 +282,9 @@ exports['Parse set with keywords'] = function (test) {
 }
 
 exports['Parse quote name'] = function (test) {
-    var parser = parsers.parser("'x");
+    const parser = parsers.parser("'x");
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.equal(result.asString(), "(quote x)");
@@ -293,9 +293,9 @@ exports['Parse quote name'] = function (test) {
 }
 
 exports['Parse quote list'] = function (test) {
-    var parser = parsers.parser("'(1 2)");
+    const parser = parsers.parser("'(1 2)");
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.equal(result.asString(), "(quote (1 2))");
@@ -304,9 +304,9 @@ exports['Parse quote list'] = function (test) {
 }
 
 exports['Parse backquote name'] = function (test) {
-    var parser = parsers.parser("`x");
+    const parser = parsers.parser("`x");
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.equal(result.asString(), "(backquote x)");
@@ -315,9 +315,9 @@ exports['Parse backquote name'] = function (test) {
 }
 
 exports['Parse backquote list'] = function (test) {
-    var parser = parsers.parser("`(1 2)");
+    const parser = parsers.parser("`(1 2)");
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.equal(result.asString(), "(backquote (1 2))");
@@ -326,9 +326,9 @@ exports['Parse backquote list'] = function (test) {
 }
 
 exports['Parse unquote name'] = function (test) {
-    var parser = parsers.parser("~x");
+    const parser = parsers.parser("~x");
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.equal(result.asString(), "(unquote x)");
@@ -337,9 +337,9 @@ exports['Parse unquote name'] = function (test) {
 }
 
 exports['Parse unquote-splicing name'] = function (test) {
-    var parser = parsers.parser("~@x");
+    const parser = parsers.parser("~@x");
     
-    var result = parser.parse();
+    const result = parser.parse();
     
     test.ok(result);
     test.equal(result.asString(), "(unquote-splicing x)");
